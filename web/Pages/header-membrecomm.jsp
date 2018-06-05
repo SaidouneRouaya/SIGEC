@@ -31,7 +31,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Nom Prénom - Membre de commission
+                  Nom Prï¿½nom - Membre de commission
                 </p>
               </li>
               <!-- Menu Body -->

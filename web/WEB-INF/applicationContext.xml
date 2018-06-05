@@ -6,4 +6,5 @@
     <bean class="dao.UtilisateurImplemBDD" id="iDAO" init-method="init" ></bean>
     <bean class="dao.DossierImplem" id="idDossier" init-method="init"></bean>
     <bean class="dao.EvaluationImplem" id="iDAO2" init-method="init"></bean>
+    <bean class="dao.CritereImplem" id="idCritere" init-method="init"></bean>
 </beans>

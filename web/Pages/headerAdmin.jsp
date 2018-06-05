@@ -39,7 +39,7 @@
                 <img src="../../dist/img/receptionniste.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Nom d'utilisateur - Admin
+                  ${utilisateur.nom} ${utilisateur.prenom} - Administrateur
           
                 </p>
               </li>
@@ -51,7 +51,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Se deconnecter</a>
+                  <a href="deconnexion.aspx" class="btn btn-default btn-flat">Se deconnecter</a>
                 </div>
               </li>
             </ul>

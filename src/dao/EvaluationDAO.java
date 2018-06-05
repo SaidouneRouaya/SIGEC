@@ -9,7 +9,7 @@ import service.GrilleEvaluation;
 
 public interface EvaluationDAO {
 
-	public void createEvaluation(Long id, Date date, GrilleEvaluation grille, int note);
+	public void createEvaluation( Date date, int note);
 	public void deleteEvaluation(Long id);
 	public List<Evaluation> getAllEvaluations();
 	public void updateEvaluation(Evaluation evaluation);
@@ -19,12 +19,5 @@ public interface EvaluationDAO {
 	public List<Critere> getAllcriteres_Encadrement();
 	public List<Critere> getAllcriteres_PAS();
 	public List<Critere> getAllcriteres_RA();
-
-    public void ajouterCritere(Critere c);
-	
-
-	
-
-
-
+	public void ajouterCritere(Critere c);
 }

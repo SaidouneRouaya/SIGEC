@@ -4,26 +4,32 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Session;
 import service.DossierCandidature;
 import service.EtatDossier;
 import service.Utilisateur;
+import util.HibernateUtil;
 
 public class DossierImplem implements DossierDAO{
 	private List<DossierCandidature> dossiers = new ArrayList<DossierCandidature>();
 	
 	public void init(){
 		System.out.println("remplir les dossiers");
-		addDossier(new DossierCandidature("1",EtatDossier.complet,"25/03/2018"));
-		addDossier(new DossierCandidature("2",EtatDossier.complet,"25/03/2018"));
-		addDossier(new DossierCandidature("3",EtatDossier.complet,"25/03/2018"));
-		addDossier(new DossierCandidature("4",EtatDossier.complet,"18/04/2018"));
-		addDossier(new DossierCandidature("5",EtatDossier.complet,"18/04/2018"));
+		/*addDossier(new DossierCandidature(EtatDossier.complet,new Date()));
+		addDossier(new DossierCandidature(EtatDossier.complet,new Date()));
+		addDossier(new DossierCandidature(EtatDossier.complet,new Date()));
+		addDossier(new DossierCandidature(EtatDossier.complet,new Date()));
+		addDossier(new DossierCandidature(EtatDossier.complet,new Date()));*/
 	}
-	
-	
+
 	@Override
 	public void addDossier(DossierCandidature d) {
 		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		session.save(d);
+		session.getTransaction().commit();
+		session.close();
 		dossiers.add(d);
 		
 	}
@@ -35,16 +41,29 @@ public class DossierImplem implements DossierDAO{
 	}
 
 	@Override
-	public DossierCandidature getDossierByID(String id) {
+	public DossierCandidature getDossierByID(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session =  HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		DossierCandidature c = (DossierCandidature) session.load(DossierCandidature.class, id);
+		c.getID_dossier();
+		session.getTransaction().commit();
+		session.close();
+		return c;
 	}
 
 	@Override
 	public List<DossierCandidature> getAllDossiers() {
 		// TODO Auto-generated method stub
-		return dossiers;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List<DossierCandidature> liste = session.createQuery("from DossierCandidature").list()
+				/*session.createSQLQuery("select * from dossier").list()*/;
+        session.getTransaction().commit();
+        session.close();
+        return liste;
 	}
+
 
 	@Override
 	public void updateDossier(DossierCandidature user) {
@@ -53,12 +72,10 @@ public class DossierImplem implements DossierDAO{
 	}
 	public List<DossierCandidature> dossierRejAnnuler()
 	{
-		
 		List<DossierCandidature> dossier = new ArrayList<DossierCandidature>();
-		
-		dossier.add(new DossierCandidature("6",EtatDossier.rejete,"25/03/2018"));
-		dossier.add(new DossierCandidature("4",EtatDossier.rejete,"26/03/2018"));
-		dossier.add(new DossierCandidature("7",EtatDossier.rejete,"25/03/2018"));
+		dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
+		dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
+		dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
 		return dossier;	
 	}
 	
@@ -67,29 +84,29 @@ public class DossierImplem implements DossierDAO{
 	
 			{
 		List<DossierCandidature> dossier = new ArrayList<DossierCandidature>();
-		dossier.add(new DossierCandidature("1",EtatDossier.incomplet,"25/03/2018"));
-		dossier.add(new DossierCandidature("2",EtatDossier.incomplet,"25/03/2018"));
-		dossier.add(new DossierCandidature("6",EtatDossier.incomplet,"25/03/2018"));
-		dossier.add(new DossierCandidature("4",EtatDossier.incomplet,"26/03/2018"));
+		dossier.add(new DossierCandidature(EtatDossier.incomplet,new Date()));
+		dossier.add(new DossierCandidature(EtatDossier.incomplet,new Date()));
+		dossier.add(new DossierCandidature(EtatDossier.incomplet,new Date()));
+		dossier.add(new DossierCandidature(EtatDossier.incomplet,new Date()));
 		return dossier;
 			}
 	public List<DossierCandidature> dossierRejete()
 		{
 List<DossierCandidature> dossier = new ArrayList<DossierCandidature>();
-dossier.add(new DossierCandidature("1",EtatDossier.rejete,"25/03/2018"));
-dossier.add(new DossierCandidature("6",EtatDossier.rejete,"05/11/2018"));
-dossier.add(new DossierCandidature("4",EtatDossier.rejete,"10/08/2018"));
-dossier.add(new DossierCandidature("7",EtatDossier.rejete,"25/03/2018"));
+dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
+dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
+dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
+dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
 return dossier;
 	}
 	public List<DossierCandidature> dossierValide()
 	
 	{
 List<DossierCandidature> dossier = new ArrayList<DossierCandidature>();
-dossier.add(new DossierCandidature("1",EtatDossier.valide,"17/04/2018"));
-dossier.add(new DossierCandidature("6",EtatDossier.valide,"18/04/2018"));
-dossier.add(new DossierCandidature("4",EtatDossier.valide,"26/05/2018"));
-dossier.add(new DossierCandidature("4",EtatDossier.valide,"18/05/2018"));
+dossier.add(new DossierCandidature(EtatDossier.valide,new Date()));
+dossier.add(new DossierCandidature(EtatDossier.valide,new Date()));
+dossier.add(new DossierCandidature(EtatDossier.valide,new Date()));
+dossier.add(new DossierCandidature(EtatDossier.valide,new Date()));
 return dossier;
 	}
 

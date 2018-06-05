@@ -2,10 +2,7 @@ package service;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 
 @Entity
@@ -24,7 +21,8 @@ public class Utilisateur implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	@Id
-	private String id_utilisateur;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id_utilisateur;
 	private String nom;
 	private String prenom;
 	
@@ -43,12 +41,26 @@ public class Utilisateur implements Serializable {
 	private String type;
 
 
-	
-	
-	public Utilisateur(String iD_user, String nom, String prenom, String nomUtilisateur, String motdepasse, String grade,
-			String domaine, String qestion_secrete, int droit_acces, String mail, String type) {
+
+
+	public Utilisateur(Long iD_user, String nom, String prenom, String nomUtilisateur, String motdepasse, String grade,
+					   String domaine, String qestion_secrete, int droit_acces, String mail, String type) {
 		super();
 		id_utilisateur = iD_user;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.nomUtilisateur = nomUtilisateur;
+		this.motdepasse = motdepasse;
+		this.grade = grade;
+		this.domaine = domaine;
+		Qestion_secrete = qestion_secrete;
+		this.droit_acces = droit_acces;
+		this.mail = mail;
+		this.type = type;
+	}
+	public Utilisateur( String nom, String prenom, String nomUtilisateur, String motdepasse, String grade,
+						String domaine, String qestion_secrete, int droit_acces, String mail, String type) {
+		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nomUtilisateur = nomUtilisateur;
@@ -63,15 +75,14 @@ public class Utilisateur implements Serializable {
 
 
 
-
-	public String getid_utilisateur() {
+	public Long getid_utilisateur() {
 		return id_utilisateur;
 	}
 
 
 
 
-	public void setid_utilisateur(String iD_user) {
+	public void setid_utilisateur(Long iD_user) {
 		id_utilisateur = iD_user;
 	}
 

@@ -57,7 +57,7 @@
     <h2 class="page-header"></h2>
 
       <div class="row">
-      <c:forEach begin="0" end="${ListeCandidats.size()-1}" var="i" >
+      <c:forEach begin="0" end="${ListeDossiers.size()-1}" var="i" >
         <div class="col-md-6">
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user-2">
@@ -67,10 +67,10 @@
                 <img class="img-circle" src="dist/img/avatar5.png" alt="User Avatar">
               </div>
               <!-- /.widget-user-image -->
-              <h3 class="widget-user-username">${ListeCandidats[i].nom} ${ListeCandidats[i].prenom}</h3>
-              <h5 class="widget-user-desc">${ListeCandidats[i].grade}</h5>
-              <h5 class="widget-user-desc">${ListeCandidats[i].mail }</h5>
-              <h5 class="widget-user-desc">Date dépôt du dossier : ${ListeDossiers[i].datedepot}</h5>
+              <h3 class="widget-user-username">${ListeDossiers[i].candidat.nom} ${ListeCandidats[i].prenom}</h3>
+              <h5 class="widget-user-desc">${ListeDossiers[i].candidat.grade}</h5>
+              <h5 class="widget-user-desc">${ListeDossiers[i].candidat.mail }</h5>
+              <h5 class="widget-user-desc">Date dépôt du dossier : ${ListeDossiers[i].datedepot.toString()}</h5>
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">

@@ -1,19 +1,37 @@
 package service;
-
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class DossierCandidature {
-	private String ID_dossier;
-	
-	private EtatDossier etat;
-	private String datedepot;
-	private final String lien ="C:\\Users\\Tosh\\eclipse-workspace\\SIGEC\\SIGEC\\Accuse_reception.pdf";
-	
-	
 
-	public DossierCandidature(String iD_dossier, EtatDossier etat, String datedepot) {
+@Entity
+@Table(name="dossier")
+public class DossierCandidature implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id_dossier;
+	private EtatDossier etat;
+	private Date datedepot;
+	//private final String lien ="C:\\Users\\Tosh\\eclipse-workspace\\SIGEC\\SIGEC\\Accuse_reception.pdf";
+
+
+	@ManyToOne
+	@JoinColumn(name = "id_candidat")
+	private Utilisateur candidat ;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_recep")
+    private  Utilisateur receptionniste ;
+
+	@ManyToOne
+	@JoinColumn(name="id_section")
+	private Section  section ;
+
+
+	public DossierCandidature( EtatDossier etat, Date datedepot) {
 		super();
-		ID_dossier = iD_dossier;
 		this.etat = etat;
 		this.datedepot = datedepot;
 	}
@@ -22,16 +40,13 @@ public class DossierCandidature {
 
 	}
 
-	public String getLien() {
-		return lien;
+
+	public Long getID_dossier() {
+		return id_dossier;
 	}
 
-	public String getID_dossier() {
-		return ID_dossier;
-	}
-
-	public void setID_dossier(String iD_dossier) {
-		ID_dossier = iD_dossier;
+	public void setID_dossier(Long iD_dossier) {
+		id_dossier = iD_dossier;
 	}
 
 	public EtatDossier getEtat() {
@@ -42,13 +57,35 @@ public class DossierCandidature {
 		this.etat = etat;
 	}
 
-	public String getDatedepot() {
+	public Date getDatedepot() {
 		return datedepot;
 	}
 
-	public void setDatedepot(String datedepot) {
+	public void setDatedepot(Date datedepot) {
 		this.datedepot = datedepot;
 	}
-	
 
+	public Utilisateur getCandidat() {
+		return candidat;
+	}
+
+	public void setCandidat(Utilisateur candidat) {
+		this.candidat = candidat;
+	}
+	/*
+    public Receptionniste getReceptionniste() {
+        return receptionniste;
+    }
+
+    public void setReceptionniste(Receptionniste receptionniste) {
+        this.receptionniste = receptionniste;
+    }
+    */
+	public Section getSection() {
+		return section;
+	}
+
+	public void setSection(Section section) {
+		this.section = section;
+	}
 }

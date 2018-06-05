@@ -6,10 +6,9 @@ import dao.UtilisateurDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.portlet.ModelAndView;
 import service.*;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,15 +17,17 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@SessionAttributes(value="utilisateur")
 public class Control {
     private GrilleEvaluation grille ;
     private Evaluation eval;
     private String dateform;
+    private List<Critere> criteres = new ArrayList<Critere>();
     private List<Critere> criteres_Pedagogique = new ArrayList<Critere>();
     private List<Critere> criteres_Encadrement = new ArrayList<Critere>();
     private List<Critere> criteres_PAS = new ArrayList<Critere>();
     private List<Critere> criteres_RA = new ArrayList<Critere>();
-
+    private Utilisateur utilisateur;
 
     @Autowired
     EvaluationDAO ev;
@@ -36,6 +37,87 @@ public class Control {
     @Autowired
     DossierDAO dossier;
 
+    /****************************************************************** Login *****************************************************/
+    @ModelAttribute("utilisateur")
+    public Utilisateur setUpUserForm() {
+        return new Utilisateur();
+    }
+
+    @RequestMapping("/login")
+    public String pagelogin(Model model)
+    {
+        String erreur ="";
+        model.addAttribute("erreur",erreur);
+        return "login";
+    }
+
+
+    @RequestMapping(value="/loginprocess")
+    public String loginsucess(Model model, @RequestParam String email,
+                              @RequestParam String password,@ModelAttribute("utilisateur")Utilisateur util)
+    {
+        String pageretour = "login";
+        ModelAndView modelview = new ModelAndView();
+        Utilisateur u = user.getUserByEmail(email);
+        if (u != null) {
+            if (u.getMail().equals(email)) {
+                if (u.getMotdepasse().equals(password))
+                {
+                    switch (u.getType())
+                    {
+                        case "candidat" :
+                        {
+                            pageretour = "candidat/etat_dossier_candidat";
+                        }
+                        case "receptionniste" :
+                        {
+                            pageretour = "receptionniste/liste-candidats";
+                        }
+                        case "membrecommission" :
+                        {
+                            pageretour = "membrecommission/dossierCandidature";
+                        }
+                        case "controlleur" :
+                        {
+                            pageretour = "controlleur/attente";
+                        }
+                        default : pageretour = "admin/creerUtilisateur";
+                    }
+                 //   pageretour = "admin/userajoute";
+                    modelview.addObject("utilisateur",u);
+                    util = u;
+                    this.utilisateur = u;
+                    System.out.println(this.utilisateur.getNom());
+                }
+                else {
+                    model.addAttribute("erreur", "erreur dans l'email ou le mot de passe");
+                }
+            }
+        }
+        else
+        {
+            model.addAttribute("erreur", "Utilisateur inexistant !");
+        }
+        return pageretour;
+    }
+
+    @RequestMapping("/deconnexion")
+    public String logout(Model model,@SessionAttribute("utilisateur")Utilisateur util)
+    {
+        System.out.println(util.getNom()+" "+util.getPrenom());
+        util = null;
+        utilisateur = null;
+        return "login";
+    }
+
+    public Boolean isConnected()
+    {
+        if (utilisateur != null)
+            return true;
+        else
+            return false;
+    }
+    /****************************************************************** Login *****************************************************/
 
     /* Fonction Receptionniste */
     @RequestMapping(value="/listcandrecep")
@@ -62,7 +144,7 @@ public class Control {
     @RequestMapping(value="/dossierAttentes")
     public String dossierenAttente(Model model)
     {
-        model.addAttribute("ListeCandidats", user.getAllCandidatsAttente());
+        model.addAttribute("ListeCandidats", user.getAllCandidats());
         model.addAttribute("ListeDossiers", dossier.getAllDossiers());
         return "receptionniste/DossiersAttentes";
     }
@@ -80,8 +162,8 @@ public class Control {
     public String completerDossier(Model model)
     {
         user.deleteCandiatAttente(0);
-        user.addUser(new Utilisateur("1","user1","nom1","username1","motdepass","Doctorant","Informatique","qs1", 111,"mail1@email.dz","Candidat"));
-        dossier.addDossier(new DossierCandidature("1",EtatDossier.complet,"18/04/2018"));
+        user.addUser(new Utilisateur((long) 1,"user1","nom1","username1","motdepass","Doctorant","Informatique","qs1", 111,"mail1@email.dz","Candidat"));
+        //dossier.addDossier(new DossierCandidature("1",EtatDossier.complet,"18/04/2018"));
         model.addAttribute("ListeCandidats", user.getAllCandidatsAttente());
         model.addAttribute("ListeDossiers", dossier.getAllDossiers());
         return "receptionniste/DossiersAttentes";
@@ -91,7 +173,7 @@ public class Control {
     @RequestMapping(value="/listcandrecepcomplet")
     public String completerDossierdirect(Model model)
     {
-        user.addUser(new Utilisateur("6","nouveauNom","nouveauPrenom","username1","motdepass","Doctorant","nouveauDomaine","qs1", 111,"mail1@email.dz","Candidat"));
+        user.addUser(new Utilisateur((long) 6,"nouveauNom","nouveauPrenom","username1","motdepass","Doctorant","nouveauDomaine","qs1", 111,"mail1@email.dz","Candidat"));
         model.addAttribute("ListeCandidats", user.getAllCandidats());
         model.addAttribute("ListeDossiers", dossier.getAllDossiers());
         return "receptionniste/liste-candidats";
@@ -100,8 +182,8 @@ public class Control {
     @RequestMapping(value="/listattenteincomplet")
     public String mettreDossierAttente(Model model)
     {
-        user.addUserAttente(new Utilisateur("6","nouveauNom","nouveauPrenom","username1","motdepass","Doctorant","nouveauDomaine","qs1", 111,"mail1@email.dz","Candidat"));
-        dossier.addDossier(new DossierCandidature("1",EtatDossier.complet,"18/04/2018"));
+        user.addUserAttente(new Utilisateur((long) 6,"nouveauNom","nouveauPrenom","username1","motdepass","Doctorant","nouveauDomaine","qs1", 111,"mail1@email.dz","Candidat"));
+       // dossier.addDossier(new DossierCandidature("1",EtatDossier.complet,"18/04/2018"));
         model.addAttribute("ListeCandidats", user.getAllCandidatsAttente());
         model.addAttribute("ListeDossiers", dossier.getAllDossiers());
         return "receptionniste/DossiersAttentes";
@@ -163,37 +245,16 @@ public class Control {
     /* Membre commission */
 
     @RequestMapping(value="/GrillEval")
-    public String pageGrillEvall(Model model , @RequestParam String ident){
+    public String pageGrillEvall(Model model , @RequestParam Long ident){
         // trai....
         model.addAttribute("ListeCriteres_Pedagogique", ev.getAllcriteres_Pedagogique());
         model.addAttribute("ListeCriteres_Encadrement", ev.getAllcriteres_Encadrement());
-        model.addAttribute("ListeCriteres_Production_activités_scientifique", ev.getAllcriteres_PAS());
-        model.addAttribute("ListeCriteres_Responsabilités_administratives", ev.getAllcriteres_RA());
+        model.addAttribute("ListeCriteres_Production_activites_scientifique", ev.getAllcriteres_PAS());
+        model.addAttribute("ListeCriteres_Responsabilites_administratives", ev.getAllcriteres_RA());
         System.out.println(ident);
-
-        model.addAttribute("Candidat",user.getUserByID(ident));
+        model.addAttribute("Candidat",dossier.getDossierByID(ident).getCandidat());
         return "membrecomm/grillEval";
     }
-
-	/*
-
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("contactForm") ContactForm contactForm) {
-		System.out.println(contactForm);
-		System.out.println(contactForm.getContacts());
-		List<Contact> contacts = contactForm.getContacts();
-
-		if(null != contacts && contacts.size() > 0) {
-			ContactController.contacts = contacts;
-			for (Contact contact : contacts) {
-				System.out.printf("%s \t %s \n", contact.getFirstname(), contact.getLastname());
-			}
-		}
-
-		return new ModelAndView("show_contact", "contactForm", contactForm);
-	}
-	*/
-
 
 
     @RequestMapping(value="/ResultEval")
@@ -222,14 +283,21 @@ public class Control {
         for (int i =0 ;  i < ev.getAllcriteres_RA().size()  ; i++)
         {
             noteEval = noteEval + ( Integer.parseInt(param.get("noteLRA"+i)) * this.criteres_RA.get(i).getPonderation()) ;
-
         }
+        this.criteres.addAll(this.criteres_Pedagogique);
+        this.criteres.addAll(this.criteres_Encadrement);
+        this.criteres.addAll(this.criteres_PAS);
+        this.criteres.addAll(this.criteres_RA);
 
-
-        model.addAttribute("CandidatName",user.getUserByID(param.get("IdCand")).getNom());
+        model.addAttribute("CandidatName",user.getUserByID(Long.parseLong(param.get("IdCand"))).getNom());
 
 
         model.addAttribute("NoteEval",noteEval);
+        Date date = new Date();
+
+
+        ev.createEvaluation(date,noteEval);
+
 
 
         return "membrecomm/Test1";
@@ -254,8 +322,8 @@ public class Control {
 
     @RequestMapping(value="/ListeCand")
     public String ListeCands(Model model){
-
-        model.addAttribute("ListeCandidats", user.getAllUsers());
+        model.addAttribute("ListeDossiers", dossier.getAllDossiers());
+        // model.addAttribute("ListeCandidats", user.getAllCandidats());
 
         return "membrecomm/listcandidat";
     }
@@ -265,111 +333,37 @@ public class Control {
     }
 
 
-    /* Fonctions candidat */
 
+    /****************** Fonction Admin ************************/
 
-
-    @RequestMapping(value="/moncompte")
-    public String CompteCandidat(Model model){
-        return "candidat/etat_dossier_candidat";
+    @RequestMapping(value="/userajoute")
+    public String ajouterUtilisateur(Model model, @RequestParam Map <String,String> param)
+    {
+        Utilisateur utilisateur = new Utilisateur(param.get("nom"), param.get("prenom"), param.get("nomUtilisateur"), param.get("motdepasse"),
+                "", "", "", 0, param.get("mail"), param.get("type"));
+        user.addUser(utilisateur);
+        model.addAttribute("utilisateur",utilisateur);
+        return "admin/userajoute";
     }
 
 
-    @RequestMapping(value="/upload_candidat")
-    public String CompteCandidatUpload(Model model){
-        return "candidat/IHM_candidat";
+    @RequestMapping(value="/ajouterUtilisateur")
+    public String formAjoutUser(Model model)
+    {
+        if (isConnected()) {
+            if (utilisateur.getType().equals("Admin")) {
+                model.addAttribute("utilisateur", utilisateur);
+                return "admin/creerUtilisateur";
+            }
+            else
+            {
+                return "redirect:/nonautorise.aspx"; /***à créer***/
+            }
+        }
+        else
+        {
+            return "redirect:/login.aspx";
+        }
     }
-
-	/*
-
-	@RequestMapping(value="/test")
-	public String pageIndex(Model model){
-		// trai....
-		model.addAttribute("ListeUtilisateurs", serv.getAllUsers());
-		return "utilisateurs";
-	}
-
-	@RequestMapping(value="/supprimerUtilisateur")
-	public String supprimerUtilisateur(Model model,@RequestParam String ID_user){
-
-
-		System.out.println(ID_user);
-		serv.deleteUser(ID_user);
-		model.addAttribute("ListeUtilisateurs", serv.getAllUsers());
-		model.addAttribute("ID_user",ID_user);
-
-		return "utilisateurs";
-	}
-
-	@RequestMapping(value="/rechercherUtilisateur")
-	public String rechercherUtilisateur(Model model,@RequestParam String ID_user){
-
-
-		List<Utilisateur> liste = new ArrayList<Utilisateur>();
-		liste.add(serv.getUserByID(ID_user));
-		model.addAttribute("ListeUtilisateurs", liste);
-		model.addAttribute("ID_user",ID_user);
-		return "utilisateurs";
-	}
-
-	@RequestMapping(value="/ajouterUtilisateur")
-	public String ajouterUtilisateur(Model model,Utilisateur u){
-		serv.addUser(u);
-		model.addAttribute("ListeUtilisateurs", serv.getAllUsers());
-		return "utilisateurs";
-	}
-
-	@RequestMapping(value="/candidatsAttente")
-	public String afficherCandattente(Model model)
-	{
-		model.addAttribute("ListeCandidats",serv.getAllCandidats());
-		return "tables/attente";
-	}
-
-
-	@RequestMapping(value="/accueil")
-	public String pageAccueil(Model model){
-		// trai....
-		model.addAttribute("ListeCriteres", ev.getAllCriteres());
-		return "Evaluation";
-	}
-
-	@RequestMapping(value="/ajouterCritere")
-	public String ajouterCritere(Model model,Critere c){
-
-
-		ev.ajouterCritere(c);
-		model.addAttribute("ListeCriteres", ev.getAllCriteres());
-
-		return "Evaluation";
-	}
-
-
-	@RequestMapping(value="/evaluer")
-	public String pageEvaluation(Model model){
-		// trai....
-		model.addAttribute("ListeCriteres", ev.getAllCriteres());
-		return "teste";
-	}
-
-	@RequestMapping(value="/valider")
-	public String pageValidation(Model model /*,@RequestParam(value ="inote") int note ){
-		// trai....
-
-		this.grille = new GrilleEvaluation(ev.getAllCriteres());
-		for(Critere c : model.ListeCriteres) {
-			   System.out.println(s);
-			}
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		dateform = dateFormat.format(date);
-	   this.ev.createEvaluation(ev.getAllEvaluations().size() + 1,date,this.grille,ev.getAllEvaluations().size()+2);
-		model.addAttribute("Dateauj",dateform);
-		model.addAttribute("ListeEvaluations", ev.getAllEvaluations());
-
-		System.out.println(dateform);
-		return "teste";
-	}*/
-
 
 }

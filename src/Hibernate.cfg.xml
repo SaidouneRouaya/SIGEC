@@ -25,6 +25,13 @@
  <property name="hbm2ddl.auto">update</property>
 
 <!-- mapping class using annotation -->
-<mapping class="service.Utilisateur"/>   
+      <mapping class="service.Utilisateur"/>
+      <mapping class="service.Critere"/>
+      <mapping class="service.Evaluation"/>
+      <mapping class="service.DossierCandidature"/>
+      <mapping class="service.SessionEvaluation"/>
+      <mapping class="service.Section"/>
+      <mapping class="service.Candidat"/>
+      <mapping class="service.Receptionniste"/>
   </session-factory>
 </hibernate-configuration>

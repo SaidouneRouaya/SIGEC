@@ -48,7 +48,7 @@
         
         
         <li> <!-- Creer compte candidat -->
-          <a href="http://localhost:8280/SIGEC/Pages/admin/ajouterUtilisateur.jsp">
+          <a href="ajouterUtilisateur.aspx">
             <i class="fa fa-user-plus"></i> <span>Créer un utilisateur</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green"></small>

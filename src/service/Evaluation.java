@@ -1,50 +1,59 @@
 package service;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.*;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-import org.hibernate.annotations.Entity;
-/*
 @Entity
 @Table(name="evaluation")
-*/
-public class Evaluation {
 
-	//@Id
-	private int ID_evaluation;
+public class Evaluation implements Serializable {
+
+	public Evaluation() {
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id_evaluation;
 	private Date date_evaluation;
 	private int note_cumule;
-	private GrilleEvaluation grille;
-	private Utilisateur user;
+	@OneToOne
+	@JoinColumn(name = "id_dossier")
+	private DossierCandidature dossier ;
+
+	@ManyToOne
+	@JoinColumn(name = "id_session")
+	private SessionEvaluation session;
+
+
+
+	//private Utilisateur user;
 
 	//private List<Critere> Grille = new ArrayList<Critere>();
-	public Evaluation(int id,Date date,GrilleEvaluation grille , int note){
-      //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-      this.ID_evaluation=id;
-      this.date_evaluation=  date;
-      this.grille=grille;
-      this.note_cumule=note;
+	public Evaluation(Date date , int note){
+		//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		this.date_evaluation=  date;
+		this.note_cumule=note;
 	}
 
-	public int getID_evaluation() {
-		return ID_evaluation;
+	public Long getID_evaluation() {
+		return id_evaluation;
 	}
-
-	public Evaluation(int iD_evaluation, Date date_evaluation, int note_cumule) {
-		super();
-		ID_evaluation = iD_evaluation;
-		this.date_evaluation = date_evaluation;
-		this.note_cumule = note_cumule;
-	}
-
-	public void setID_evaluation(int iD_evaluation) {
-		ID_evaluation = iD_evaluation;
+	/*
+        public Evaluation(int iD_evaluation, Date date_evaluation, int note_cumule) {
+            super();
+            ID_evaluation = iD_evaluation;
+            this.date_evaluation = date_evaluation;
+            this.note_cumule = note_cumule;
+        }
+    */
+	public void setID_evaluation(Long iD_evaluation) {
+		id_evaluation = iD_evaluation;
 	}
 
 	public Date getDate_evaluation() {
@@ -61,5 +70,20 @@ public class Evaluation {
 
 	public void setNote_cumule(int note_cumule) {
 		this.note_cumule = note_cumule;
+	}
+	public DossierCandidature getDossier() {
+		return dossier;
+	}
+
+	public void setDossier(DossierCandidature dossier) {
+		this.dossier = dossier;
+	}
+
+	public SessionEvaluation getSession() {
+		return session;
+	}
+
+	public void setSession(SessionEvaluation session) {
+		this.session = session;
 	}
 }

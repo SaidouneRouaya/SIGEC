@@ -8,7 +8,7 @@ public interface UtilisateurDAO {
 
 	public void addUser(Utilisateur user);
 	public void deleteUser(String id);
-	public Utilisateur getUserByID(String id);
+	public Utilisateur getUserByID(Long id);
 	public List<Utilisateur> getAllUsers();
 	public void updateUser(Utilisateur user);
 	public List<Utilisateur> getAllCandidats();
@@ -16,4 +16,5 @@ public interface UtilisateurDAO {
 	public void deleteCandiatAttente(int i);
 	public void addUserAttente(Utilisateur u);
 	public List<Utilisateur> getAllCandidats2();
+	public Utilisateur getUserByEmail(String email);
 }

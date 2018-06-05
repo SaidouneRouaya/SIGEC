@@ -83,12 +83,12 @@
 										</tr>
 									</thead>
 									<tbody>
-									 <tg:forEach begin="0" end="${ListeCandidats.size() -1}" var="i" >
+									 <tg:forEach begin="0" end="${ListeDossiers.size() -1}" var="i" >
 		      									<tr>
-													     <td>${ListeCandidats[i].nom }</td>
+													     <td>${ListeDossiers[i].candidat.nom}</td>
 													     	<td>12/05/2017</td>
 											      			<td><strong><a href="dossiercomm.aspx">Consulter dossier</a></strong></td>
-											              <td><strong><a href="GrillEval.aspx?ident=${ListeCandidats[i].id_utilisateur}">Evaluer dossier</a></strong></td>
+											              <td><strong><a href="GrillEval.aspx?ident=${ListeDossiers[i].ID_dossier}">Evaluer dossier</a></strong></td>
 												
 												</tr>
 											</tg:forEach>	
