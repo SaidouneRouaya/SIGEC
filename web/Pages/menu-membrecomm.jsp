@@ -33,8 +33,8 @@
         </li>
         
         <li> <!-- Dossies en attente -->
-          <a href="ResultEval.aspx">
-            <i class="fa fa-th"></i> <span>Résultats des évaluations</span>
+          <a href="ListeCandEval.aspx">
+            <i class="fa fa-th"></i> <span>Resultats des evaluations</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green"></small>
             </span>

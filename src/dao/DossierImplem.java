@@ -64,6 +64,43 @@ public class DossierImplem implements DossierDAO{
         return liste;
 	}
 
+	@Override
+	public List<DossierCandidature> getAllDossierComplet()
+	{
+		List<DossierCandidature> liste;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		liste = session.createQuery("from DossierCandidature D where D.etat= '0'").list();
+		session.getTransaction().commit();
+		session.close();
+		return liste;
+	}
+
+	@Override
+	public List<DossierCandidature> getAllDossierEvalue()
+	{
+		List<DossierCandidature> liste;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		liste = session.createQuery("from DossierCandidature D where D.etat= '5'").list();
+		session.getTransaction().commit();
+		session.close();
+		return liste;
+	}
+	@Override
+	public void SetDossierEval(Long id ,int etat) {
+		Session session =  HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		String hqlUpdate = "update DossierCandidature D set D.etat = :Etatdos" +
+				" where D.id_dossier = :id_dossier";
+		int updatedEntities = session.createQuery( hqlUpdate )
+				.setLong("id_dossier", id )
+				.setInteger("Etatdos", etat)
+				.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	@Override
 	public void updateDossier(DossierCandidature user) {

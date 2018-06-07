@@ -253,6 +253,7 @@ public class Control {
         model.addAttribute("ListeCriteres_Production_activites_scientifique", ev.getAllcriteres_PAS());
         model.addAttribute("ListeCriteres_Responsabilites_administratives", ev.getAllcriteres_RA());
         System.out.println(ident);
+        model.addAttribute("dossier",dossier.getDossierByID(ident));
         model.addAttribute("Candidat",dossier.getDossierByID(ident).getCandidat());
         return "membrecomm/grillEval";
     }
@@ -292,25 +293,32 @@ public class Control {
         model.addAttribute("CandidatName",user.getUserByID(Long.parseLong(param.get("IdCand"))).getNom());
         model.addAttribute("NoteEval",noteEval);
         Date date = new Date();
-       // ev.createEvaluation(date,noteEval);
+        DossierCandidature doss = dossier.getDossierByID(Long.parseLong(param.get("IdDossier")));
+        // doss.setEtat(EtatDossier.evalue);
+        ev.createEvaluation(doss ,ev.getAlSessions().get(0), date,noteEval);
+        dossier.SetDossierEval(Long.parseLong(param.get("IdDossier")),5);
         System.out.println(noteEval);
-        return "membrecomm/Test1";
+        return "redirect:/ListeCandEval.aspx";
     }
-
 
     @RequestMapping(value="/ListeCandEval")
     public String pageListeCandEval(Model model){
-        model.addAttribute("ListeCandidats", user.getAllCandidats());
+        List<Evaluation> listeev = ev.getAllEvaluations();
+        Collections.sort(listeev);
+        model.addAttribute("ListeEavluations",listeev);
+       /*model.addAttribute("ListeCandidats", user.getAllCandidats());
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd ");
         Date date = new Date();
         dateform = dateFormat.format(date);
+
         model.addAttribute("Dateauj",dateform);
+        */
         return "membrecomm/resulteval";
     }
 
     @RequestMapping(value="/ListeCand")
     public String ListeCands(Model model){
-        model.addAttribute("ListeDossiers", dossier.getAllDossiers());
+        model.addAttribute("ListeDossiers", dossier.getAllDossierComplet());
         // model.addAttribute("ListeCandidats", user.getAllCandidats());
 
         return "membrecomm/listcandidat";
@@ -319,6 +327,7 @@ public class Control {
     public String DossierCanComm(Model model){
         return "membrecomm/dossierCandidature";
     }
+
 
 
 

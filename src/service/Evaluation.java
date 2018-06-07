@@ -1,5 +1,7 @@
 package service;
 
+import dao.DossierImplem;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -12,11 +14,10 @@ import javax.persistence.*;
 @Entity
 @Table(name="evaluation")
 
-public class Evaluation implements Serializable {
+public class Evaluation implements Serializable,Comparable<Evaluation> {
 
 	public Evaluation() {
 	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id_evaluation;
@@ -35,8 +36,10 @@ public class Evaluation implements Serializable {
 	//private Utilisateur user;
 
 	//private List<Critere> Grille = new ArrayList<Critere>();
-	public Evaluation(Date date , int note){
+	public Evaluation(DossierCandidature dossier ,SessionEvaluation sess ,  Date date , int note){
 		//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		this.dossier = dossier;
+		this.session = sess;
 		this.date_evaluation=  date;
 		this.note_cumule=note;
 	}
@@ -85,5 +88,10 @@ public class Evaluation implements Serializable {
 
 	public void setSession(SessionEvaluation session) {
 		this.session = session;
+	}
+
+	@Override
+	public int compareTo(Evaluation o) {
+		return -((Integer)note_cumule).compareTo(o.note_cumule);
 	}
 }

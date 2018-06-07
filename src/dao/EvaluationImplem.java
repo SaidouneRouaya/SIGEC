@@ -5,14 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
-import service.Critere;
-import service.Evaluation;
-import service.GrilleEvaluation;
-import service.Utilisateur;
+import service.*;
 import util.HibernateUtil;
 
 public class EvaluationImplem implements EvaluationDAO {
-	private List<Evaluation> evaluations = new ArrayList<Evaluation>();
 	private List<Critere> criteres_Pedagogique = new ArrayList<Critere>();
 	private List<Critere> criteres_Encadrement = new ArrayList<Critere>();
 	private List<Critere> criteres_PAS = new ArrayList<Critere>();
@@ -29,10 +25,10 @@ public class EvaluationImplem implements EvaluationDAO {
 	}
 
 	@Override
-	public void createEvaluation(Date date, int note) {
+	public void createEvaluation(DossierCandidature dossier ,SessionEvaluation sess , Date date, int note) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		Evaluation  ev  =new Evaluation(date,note);
+		Evaluation  ev  =new Evaluation(dossier,sess, date,note);
 		session.beginTransaction();
 		session.save(ev);
 		session.getTransaction().commit();
@@ -47,7 +43,11 @@ public class EvaluationImplem implements EvaluationDAO {
 
 	@Override
 	public List<Evaluation> getAllEvaluations() {
-		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<Evaluation> evaluations = session.createQuery("from Evaluation S ").list();
+		session.getTransaction().commit();
+		session.close();
 		return evaluations;
 	}
 	@Override
@@ -108,6 +108,25 @@ public class EvaluationImplem implements EvaluationDAO {
 	public void ajouterCritere(Critere c) {
 		// TODO Auto-generated method stub
 		criteres.add(c);
+	}
+	@Override
+	public SessionEvaluation getSessionByID(Long id) {
+		Session session =  HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		SessionEvaluation s = (SessionEvaluation) session.createQuery("from SessionEvaluation s where s.id_session = :id").setLong("id",id).list().get(0);
+		session.getTransaction().commit();
+		session.close();
+		return s;
+	}
+
+	@Override
+	public List<SessionEvaluation> getAlSessions() {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<SessionEvaluation> sessions = session.createQuery("from SessionEvaluation S ").list();
+		session.getTransaction().commit();
+		session.close();
+		return sessions;
 	}
 
 }

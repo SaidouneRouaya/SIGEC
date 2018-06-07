@@ -37,19 +37,14 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
 <body class="hold-transition skin-yellow sidebar-mini">
 	<div class="wrapper">
-
 		<!-- contains the header -->
 		<%@ include file="../headerAdmin.jsp"%>
 		<!-- contains the header -->
-
-
 		<!-- sidebar-menu. contains the logo, sidebar, user informations, menu, searchbar -->
 		<%@ include file="../menu-admin.jsp"%>
 		<!-- sidebar-menu. contains the logo, sidebar, user informations, menu, searchbar -->
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Header content -->
@@ -227,20 +222,12 @@
             </div>
             <!-- /.tab-content -->
           </div>
-
-
-
-
-
 						<!-- /.box-body -->
 					</div>
 					<!-- /.box -->
-
-
 <div class="col-xs-4">
 
 </div>
-
 				<div class="col-xs-3 center-block">
            			<!--<a href="#" class="btn btn-primary btn-block margin-bottom">Partager avec commission</a>-->
            			<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#modal-default">

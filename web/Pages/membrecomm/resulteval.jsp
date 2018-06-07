@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-		        <%@ taglib prefix="tg" uri="http://java.sun.com/jsp/jstl/core" %>    
+		        <%@ taglib prefix="tg" uri="http://java.sun.com/jsp/jstl/core" %>
+                <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -77,19 +78,20 @@
 										<tr>
 											<th>Candidat</th>
 											<th>Date candidature</th>
+											<th>Date D evaluation</th>
 											<th>Cumul des points</th>
 
 										</tr>
 									</thead>
 									<tbody>
-										 <tg:forEach begin="0" end="${ListeCandidats.size() -1}" var="i" >
-		      									<tr>
-													<td>${ListeCandidats[i].nom }</td>
-													<td>${Dateauj}</td>
-													<td>${ 150 + i*11}</td>
-												
-												</tr>
-											</tg:forEach>		
+									<tg:forEach begin="0" end="${ListeEavluations.size() -1}" var="i"  >
+										<tr>
+											<td>${ListeEavluations[i].dossier.candidat.nom}</td>
+											<td><fmt:formatDate value="${ListeEavluations[i].dossier.datedepot}" pattern="yyyy-MM-dd " /></td>
+											<td><fmt:formatDate value="${ListeEavluations[i].date_evaluation}" pattern="yyyy-MM-dd " /></td>
+											<td>${ListeEavluations[i].note_cumule}</td>
+										</tr>
+									</tg:forEach>
 									</tbody>
 									<tfoot>
 										<tr>

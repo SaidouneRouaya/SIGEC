@@ -3,13 +3,11 @@ package dao;
 import java.util.Date;
 import java.util.List;
 
-import service.Critere;
-import service.Evaluation;
-import service.GrilleEvaluation;
+import service.*;
 
 public interface EvaluationDAO {
 
-	public void createEvaluation( Date date, int note);
+	public void createEvaluation(DossierCandidature dossier , SessionEvaluation sess , Date date, int note);
 	public void deleteEvaluation(Long id);
 	public List<Evaluation> getAllEvaluations();
 	public void updateEvaluation(Evaluation evaluation);
@@ -20,4 +18,6 @@ public interface EvaluationDAO {
 	public List<Critere> getAllcriteres_PAS();
 	public List<Critere> getAllcriteres_RA();
 	public void ajouterCritere(Critere c);
+	public SessionEvaluation getSessionByID(Long id);
+	public List<SessionEvaluation> getAlSessions();
 }

@@ -15,4 +15,7 @@ public interface DossierDAO {
 	public List<DossierCandidature>  dossierRejete();
 	public List<DossierCandidature>  dossierValide();
 	public List<DossierCandidature> dossierRejAnnuler();
+	public List<DossierCandidature> getAllDossierComplet();
+	public List<DossierCandidature> getAllDossierEvalue();
+	public void SetDossierEval(Long id, int etat);
 }

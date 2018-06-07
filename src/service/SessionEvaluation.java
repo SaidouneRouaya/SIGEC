@@ -18,6 +18,10 @@ public class SessionEvaluation implements Serializable {
     private Date date_session;
     private int  nb_candidat;
 
+    @OneToMany
+    List<Evaluation> listeEval = new ArrayList<Evaluation>();
+
+
 
 
 
@@ -56,5 +60,11 @@ public class SessionEvaluation implements Serializable {
         this.nb_candidat = nb_candidat;
     }
 
+    public List<Evaluation> getListeEval() {
+        return listeEval;
+    }
 
+    public void setListeEval(List<Evaluation> listeEval) {
+        this.listeEval = listeEval;
+    }
 }
