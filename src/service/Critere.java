@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="critere")
-public class Critere implements Serializable {
+public class Critere implements Serializable, Comparable<Critere> {
 	private static final long serialVersionUID = 1L;
 
 
@@ -61,5 +61,10 @@ public class Critere implements Serializable {
 
 	public void setType_critere(String type_critere) {
 		this.type_critere = type_critere;
+	}
+
+	@Override
+	public int compareTo(Critere o) {
+		return id_critere.compareTo(o.id_critere);
 	}
 }

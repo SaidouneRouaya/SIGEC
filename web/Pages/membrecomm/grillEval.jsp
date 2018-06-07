@@ -104,7 +104,7 @@
 									
 										  <tg:forEach begin="0" end="${ListeCriteres_Pedagogique.size() -1}" var="i" >
 		      									<tr>
-													<td>${ListeCriteres_Pedagogique[i].id_critere}</td>
+													<td>${ListeCriteres_Pedagogique[i].id_critere  }</td>
 													<td>${ListeCriteres_Pedagogique[i].libelle }</td>
 													<td>${ListeCriteres_Pedagogique[i].ponderation}</td>
 													<td> <input type="text" value="2" name="noteLP${i}" /> </td>
@@ -141,7 +141,7 @@
 									<tbody>
 										 <tg:forEach begin="0" end="${ListeCriteres_Encadrement.size() -1}" var="i" >
 		      									<tr>
-													<td>${ListeCriteres_Encadrement[i].id_critere }</td>
+													<td>${ListeCriteres_Encadrement[i].id_critere  }</td>
 													<td>${ListeCriteres_Encadrement[i].libelle }</td>
 													<td>${ListeCriteres_Encadrement[i].ponderation}</td>
 													<td> <input type="text" value="1" name= "noteLE${i}" /> </td>
@@ -179,7 +179,7 @@
 									<tbody>
 										<tg:forEach begin="0" end="${ListeCriteres_Production_activites_scientifique.size() -1}" var="i" >
 		      									<tr>
-													<td>${ListeCriteres_Production_activites_scientifique[i].id_critere }</td>
+													<td>${ListeCriteres_Production_activites_scientifique[i].id_critere  }</td>
 													<td>${ListeCriteres_Production_activites_scientifique[i].libelle }</td>
 													<td>${ListeCriteres_Production_activites_scientifique[i].ponderation}</td>
 													<td> <input type="text" value="1" name="noteLPAS${i}" /> </td>
@@ -217,7 +217,7 @@
 									<tbody>
 										 <tg:forEach begin="0" end="${ListeCriteres_Responsabilites_administratives.size() -1}" var="i" >
 		      									<tr>
-													<td>${ListeCriteres_Responsabilites_administratives[i].id_critere }</td>
+													<td>${ListeCriteres_Responsabilites_administratives[i].id_critere  }</td>
 													<td>${ListeCriteres_Responsabilites_administratives[i].libelle }</td>
 													<td>${ListeCriteres_Responsabilites_administratives[i].ponderation}</td>
 												<td> <input type="text" value="2" name="noteLRA${i}" /> </td>

@@ -7,7 +7,7 @@ import service.Utilisateur;
 public interface UtilisateurDAO {
 
 	public void addUser(Utilisateur user);
-	public void deleteUser(String id);
+	public void deleteUser(Long id);
 	public Utilisateur getUserByID(Long id);
 	public List<Utilisateur> getAllUsers();
 	public void updateUser(Utilisateur user);
@@ -17,4 +17,5 @@ public interface UtilisateurDAO {
 	public void addUserAttente(Utilisateur u);
 	public List<Utilisateur> getAllCandidats2();
 	public Utilisateur getUserByEmail(String email);
+	public int getNbCandidats();
 }

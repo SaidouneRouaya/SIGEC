@@ -15,7 +15,7 @@ public class UtilisateurImplemBDD implements UtilisateurDAO {
 
 	public void init(){
 		System.out.println("remplir les candidats");
-	/*	addUser(new Utilisateur("1","user1","nom1","username1","motdepass","Doctorant","Informatique","qs1", 111,"mail1@email.dz","Candidat"));
+	/*	addUser(new Utilisateur((Long)1,"user1","nom1","username1","motdepass","Doctorant","Informatique","qs1", 111,"mail1@email.dz","Candidat"));
 		addUser(new Utilisateur("2","user2","nom2","username2","motdepass","Doctorant","Informatique","qs1", 111,"mail2@email.dz","Candidat"));
 		addUser(new Utilisateur("3","user3","nom3","username3","motdepass","Doctorant","Informatique","qs1", 111,"mail3@email.dz","Candidat"));
 		addUser(new Utilisateur("4","user4","nom4","username4","motdepass","Doctorant","Informatique","qs1", 111,"mail4@email.dz","Candidat"));
@@ -36,21 +36,22 @@ public class UtilisateurImplemBDD implements UtilisateurDAO {
 	}
 
 	@Override
-	public void deleteUser(String id) {
-		/*Session session =  HibernateUtil.getSessionFactory().getCurrentSession();
+	public void deleteUser(Long id) {
+		Session session =  HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Utilisateur u = (Utilisateur) session.load(Utilisateur.class, id);
-		//Utilisateur u = this.getUserByID(id);
-		session.delete(u);
-		session.getTransaction().commit();*/
+		String hqlDelete = "delete Utilisateur c where c.id_utilisateur = :id_user";
+		int deletedEntities = session.createQuery( hqlDelete )
+				.setLong( "id_user", id)
+				.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
 	}
 
 	@Override
 	public Utilisateur getUserByID(Long id) {
 		Session session =  HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Utilisateur u = (Utilisateur) session.load(Utilisateur.class, id);
-		u.getid_utilisateur();
+		Utilisateur u = (Utilisateur) session.createQuery("from Utilisateur u where u.id_utilisateur = :id").setLong("id",id).list().get(0);
 		session.getTransaction().commit();
 		session.close();
 		return u;
@@ -127,5 +128,11 @@ public class UtilisateurImplemBDD implements UtilisateurDAO {
 		addUser(new Utilisateur("5","user1","nom5","username5","motdepass","Doctorant","Informatique","qs1", 111,"mail5@email.dz","Candidat"));
 */
 		return utilisateurs;
+	}
+
+	@Override
+	public int getNbCandidats()
+	{
+		return getAllCandidats().size();
 	}
 }

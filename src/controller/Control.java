@@ -1,5 +1,6 @@
 package controller;
 
+import dao.CritereDAO;
 import dao.DossierDAO;
 import dao.EvaluationDAO;
 import dao.UtilisateurDAO;
@@ -11,10 +12,7 @@ import org.springframework.web.portlet.ModelAndView;
 import service.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @SessionAttributes(value="utilisateur")
@@ -28,6 +26,9 @@ public class Control {
     private List<Critere> criteres_PAS = new ArrayList<Critere>();
     private List<Critere> criteres_RA = new ArrayList<Critere>();
     private Utilisateur utilisateur;
+
+    @Autowired
+    CritereDAO crit;
 
     @Autowired
     EvaluationDAO ev;
@@ -81,7 +82,7 @@ public class Control {
                         {
                             pageretour = "controlleur/attente";
                         }
-                        default : pageretour = "admin/creerUtilisateur";
+                        default : pageretour = "admin/tableauBord";
                     }
                  //   pageretour = "admin/userajoute";
                     modelview.addObject("utilisateur",u);
@@ -288,35 +289,22 @@ public class Control {
         this.criteres.addAll(this.criteres_Encadrement);
         this.criteres.addAll(this.criteres_PAS);
         this.criteres.addAll(this.criteres_RA);
-
         model.addAttribute("CandidatName",user.getUserByID(Long.parseLong(param.get("IdCand"))).getNom());
-
-
         model.addAttribute("NoteEval",noteEval);
         Date date = new Date();
-
-
-        ev.createEvaluation(date,noteEval);
-
-
-
+       // ev.createEvaluation(date,noteEval);
+        System.out.println(noteEval);
         return "membrecomm/Test1";
     }
 
 
     @RequestMapping(value="/ListeCandEval")
     public String pageListeCandEval(Model model){
-
-
-
         model.addAttribute("ListeCandidats", user.getAllCandidats());
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd ");
         Date date = new Date();
         dateform = dateFormat.format(date);
-
         model.addAttribute("Dateauj",dateform);
-
-
         return "membrecomm/resulteval";
     }
 
@@ -343,10 +331,28 @@ public class Control {
                 "", "", "", 0, param.get("mail"), param.get("type"));
         user.addUser(utilisateur);
         model.addAttribute("utilisateur",utilisateur);
-        return "admin/userajoute";
+        return "redirect:/listeUtilisateurs.aspx";
     }
 
-
+    @RequestMapping(value="/listeUtilisateurs")
+    public String listeUtilisateurs(Model model)
+    {
+        model.addAttribute("ListeUtilisateurs",user.getAllUsers());
+        return "admin/listeUsers";
+    }
+    @RequestMapping(value="/modifierUtilisateurs")
+    public String modifierUtilisateurs(Model model, @RequestParam Map <String,String> param)
+    {
+        if (param.get("modifier")!= null)
+        {
+            String id_user = param.get("id");
+        }
+        else if (param.get("supprimer") != null)
+        {
+            user.deleteUser(Long.parseLong(param.get("id")));
+        }
+        return "redirect:/listeUtilisateurs.aspx";
+    }
     @RequestMapping(value="/ajouterUtilisateur")
     public String formAjoutUser(Model model)
     {
@@ -364,6 +370,53 @@ public class Control {
         {
             return "redirect:/login.aspx";
         }
+    }
+    @RequestMapping(value="/listeCriteres")
+    public String ajouterUtilisateur(Model model)
+    {
+        criteres_Pedagogique=ev.getAllcriteres_Pedagogique();
+        criteres_Encadrement = ev.getAllcriteres_Encadrement();
+        criteres_PAS = ev.getAllcriteres_PAS();
+        criteres_RA = ev.getAllcriteres_RA();
+        Collections.sort(criteres_Pedagogique);
+        Collections.sort(criteres_Encadrement);
+        Collections.sort(criteres_PAS);
+        Collections.sort(criteres_RA);
+        model.addAttribute("criteres_AP", criteres_Pedagogique);
+        model.addAttribute("criteres_E",criteres_Encadrement);
+        model.addAttribute("criteres_PAS",criteres_PAS);
+        model.addAttribute("criteres_RA",criteres_RA);
+        return "admin/gestionGrille";
+    }
+    @RequestMapping(value="/ajoutercritere")
+    public String ajoutercritere(Model model, @RequestParam Map <String,String> param)
+    {
+        Critere critere = new Critere(param.get("id_critere"),param.get("critere"),Integer.parseInt(param.get("ponderation")),param.get("categorie"));
+        crit.addCritere(critere);
+        return "redirect:/listeCriteres.aspx";
+    }
+
+    @RequestMapping(value="/modifierCriteres")
+    public String modifierCriteres(Model model, @RequestParam Map <String,String> param)
+    {
+        if (param.get("modifier")!= null)
+        {
+            String id_crit = param.get("id_critere");
+            crit.modifierCritere(id_crit
+                    ,Integer.parseInt(param.get(id_crit)));
+        }
+        else if (param.get("supprimer") != null)
+        {
+            crit.deleteCritere(param.get("id_critere"));
+        }
+        return "redirect:/listeCriteres.aspx";
+    }
+    @RequestMapping(value="/tableauBord")
+    public String ouvrirTB(Model model)
+    {
+        model.addAttribute("nbCandidats",user.getNbCandidats());
+
+        return "admin/tableauBord";
     }
 
 }

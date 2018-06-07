@@ -27,7 +27,7 @@
         <!-- Menu Elements -->
         
         <li> <!-- Liste des candidats -->
-          <a href="http://localhost:8280/SIGEC/Pages/admin/tableauBord.jsp">
+          <a href="tableauBord.aspx">
             <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right"></span>
@@ -37,7 +37,7 @@
         </li>
         
         <li> <!-- Dossies en attente -->
-          <a href="http://localhost:8280/SIGEC/Pages/admin/gestionGrille.jsp">
+          <a href="listeCriteres.aspx">
             <i class="fa  fa-table"></i> <span>Gestion de la grille</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green"></small>
@@ -47,7 +47,7 @@
         </li>
         
         
-        <li> <!-- Creer compte candidat -->
+        <li> <!-- Creer compte utilisateur -->
           <a href="ajouterUtilisateur.aspx">
             <i class="fa fa-user-plus"></i> <span>Créer un utilisateur</span>
             <span class="pull-right-container">
@@ -56,19 +56,27 @@
           </a>
           
         </li>
-        
-        <li> <!-- Creer compte candidat -->
+
+        <li> <!-- Liste des utilisateurs -->
+          <a href="listeUtilisateurs.aspx">
+            <i class="fa fa-user"></i> <span>Liste des utilisateurs</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green"></small>
+            </span>
+          </a>
+
+        </li>
+
+        <!--   <li> Creer compte candidat
           <a href="#">
             <i class="fa  fa-lock"></i> <span>Gestion des droits d'accée</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green"></small>
             </span>
           </a>
-          
-        </li>
-                    
+        </li>-->
+      </ul>
         <!-- Menu Elements -->
-    
     </section>
     <!-- /.sidebar -->
   </aside>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="tg" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -66,462 +67,230 @@
 
 			<section class="content">
 				<div class="row">
-					<div class="col-xs-9">
+					<div class="col-xs-12">
 						<div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_1" data-toggle="tab">Section 1</a></li>
-              <li><a href="#tab_2" data-toggle="tab">Section 2 </a></li>
-              <li><a href="#tab_3" data-toggle="tab">Section 3 </a></li>
-
-              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+				<li class="active"><a href="#tab_1" data-toggle="tab">Activités Pédagogiques</a></li>
+				<li><a href="#tab_2" data-toggle="tab">Encadrements</a></li>
+				<li><a href="#tab_3" data-toggle="tab">Production et activité scientifique</a></li>
+				<li><a href="#tab_4" data-toggle="tab">Responsabilités administratives</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
-              <div id="collapseOne" class="panel-collapse collapse in">
-                    
-                 <div class="box">
-
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="example2" class="table table-bordered table-hover">
 									<thead>
 										<tr>
+											<th>Identifiant</th>
 											<th>Critere</th>
 											<th>Ponderation</th>
 											<th>Modifier</th>
-											
-
+											<th>Supprimer</th>
 										</tr>
 									</thead>
 									<tbody>
+									<tg:forEach begin="0" end="${criteres_AP.size()-1}" var="i" >
 										<tr>
-											<td>Description Critere 1</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
+											<form method="post" action="modifierCriteres.aspx">
+												<td>${criteres_AP[i].id_critere}</td>
+											<td>${criteres_AP[i].libelle}</td>
+												<input type="hidden" name="id_critere" value="${criteres_AP[i].id_critere}">
+											<td><input size="3" type="text" value="${criteres_AP[i].ponderation}" name="${criteres_AP[i].id_critere}" /></td>
+											<td>
+												<input type="submit" name="modifier" value="Modifier" class="btn btn-block btn-warning">
+											</td>
+												<td><input type="submit" name="supprimer" value="Supprimer"  class="btn btn-block btn-danger">
+											</td>
+											</form>
 										</tr>
-										<tr>
-											<td>Description Critere 2</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 3</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 4</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 5</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 6</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-										<tr>
-											<td>Description Critere 7</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 8</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 9</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
+									</tg:forEach>
 									</tbody>
-									
+
 								</table>
 							</div>
 							<!-- /.box-body -->
-							
-						</div>
-						<!-- /.box -->
-                 </div>
-                
               </div>
               <!-- /.tab-pane -->
-             <div class="tab-pane" id="tab_2">
-              
-                 <div class="box">
-
+				<div class="tab-pane" id="tab_2">
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="example2" class="table table-bordered table-hover">
 									<thead>
-										<tr>
-											<th>Critere</th>
-											<th>Ponderation</th>
-											<th>Modifier</th>
-											
-
-										</tr>
+									<tr>
+										<th>Identifiant</th>
+										<th>Critere</th>
+										<th>Ponderation</th>
+										<th>Modifier</th>
+										<th>Supprimer</th>
+									</tr>
 									</thead>
 									<tbody>
+									<tg:forEach begin="0" end="${criteres_E.size()-1}" var="i" >
 										<tr>
-											<td>Description Critere 1</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
+											<form method="post" action="modifierCriteres.aspx">
+												<td>${criteres_E[i].id_critere}</td>
+												<input type="hidden" name="id_critere" value="${criteres_E[i].id_critere}">
+												<td>${criteres_E[i].libelle}</td>
+												<td><input size="3" type="text" value="${criteres_E[i].ponderation}" name="${criteres_E[i].id_critere}" /></td>
+												<td>
+													<input type="submit" name="modifier" value="Modifier" class="btn btn-block btn-warning">
 
+													</td>
+												<td><input type="submit" name="supprimer" value="Supprimer"  class="btn btn-block btn-danger"></td>
+											</form>
 										</tr>
-										<tr>
-											<td>Description Critere</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 4</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 5</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 6</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										<tr>
+									</tg:forEach>
 									</tbody>
-									
+
 								</table>
 							</div>
 							<!-- /.box-body -->
-							
-						</div>
-						<!-- /.box -->
-              </div>
-              <!-- /.tab-pane -->
-              
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_3">
-              
-                 <div class="box">
 
+				</div>
+              <!-- /.tab-pane -->
+
+              <!-- /.tab-pane -->
+				<div class="tab-pane" id="tab_3">
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="example2" class="table table-bordered table-hover">
 									<thead>
-										<tr>
-											<th>Critere</th>
-											<th>Pondération</th>
-											<th>Modifier</th>
-											
-
-										</tr>
+									<tr>
+										<th>Identifiant</th>
+										<th>Critere</th>
+										<th>Ponderation</th>
+										<th>Modifier</th>
+										<th>Supprimer</th>
+									</tr>
 									</thead>
 									<tbody>
+									<tg:forEach begin="0" end="${criteres_PAS.size()-1}" var="i" >
 										<tr>
-											<td>Description Critere 1</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button></td>
-
+											<form method="post" action="modifierCriteres.aspx">
+												<td>${criteres_PAS[i].id_critere}</td>
+												<td>${criteres_PAS[i].libelle}</td>
+												<input type="hidden" name="id_critere" value="${criteres_PAS[i].id_critere}">
+												<td><input size="3" type="text" value="${criteres_PAS[i].ponderation}" name="${criteres_PAS[i].id_critere}" /></td>
+												<td>
+													<input type="submit" name="modifier" value="Modifier" class="btn btn-block btn-warning">
+												</td>
+												<td>
+													<input type="submit" name="supprimer" value="Supprimer"  class="btn btn-block btn-danger">
+												</td>
+											</form>
 										</tr>
-										<tr>
-											<td>Description Critere 2</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 3</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 4</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button></td>
-
-										</tr>
-										<tr>
-											<td>Description Critere 5</td>
-											<td><select class="form-control">
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                  </select></td>
-											<td><button type="button"
-													class="btn btn-block btn-xs">Modifier</button>
-													<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-default">
-               Supprimer le critère
-              </button></td>
-
-										</tr>
-										
-										
+									</tg:forEach>
 									</tbody>
-									
+
 								</table>
 							</div>
 							<!-- /.box-body -->
-							
-						</div>
-						<!-- /.box -->
-              </div>
+				</div>
               <!-- /.tab-pane -->
+				<div class="tab-pane" id="tab_4">
+							<!-- /.box-header -->
+							<div class="box-body">
+								<table id="example2" class="table table-bordered table-hover">
+									<thead>
+									<tr>
+										<th>Identifiant</th>
+										<th>Critere</th>
+										<th>Ponderation</th>
+										<th>Modifier</th>
+										<th>Supprimer</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tg:forEach begin="0" end="${criteres_RA.size()-1}" var="i" >
+										<tr>
+											<form method="post" action="modifierCriteres.aspx">
+												<td>${criteres_RA[i].id_critere}</td>
+												<td>${criteres_RA[i].libelle}</td>
+												<input type="hidden" name="id_critere" value="${criteres_RA[i].id_critere}">
+												<td><input size="3" type="text" value="${criteres_RA[i].ponderation}" name="${criteres_RA[i].id_critere}" /></td>
+												<td>
+													<input type="submit" name="modifier" value="Modifier" class="btn btn-block btn-warning">
+												</td>
+												<td>
+													<input type="submit" name="supprimer" value="Supprimer"  class="btn btn-block btn-danger">
+												</td>
+											</form>
+										</tr>
+									</tg:forEach>
+									</tbody>
+
+								</table>
+							</div>
+							<!-- /.box-body -->
+				</div>
             </div>
             <!-- /.tab-content -->
           </div>
-          
-						
-						
-						
+
+
+
+
 
 						<!-- /.box-body -->
 					</div>
 					<!-- /.box -->
-					
-				
-					
-				
-				<div class="col-xs-3">
-					
-         			 
-           			<a href="#" class="btn btn-primary btn-block margin-bottom">Partager avec commission</a>
+
+
+<div class="col-xs-4">
+
+</div>
+
+				<div class="col-xs-3 center-block">
+           			<!--<a href="#" class="btn btn-primary btn-block margin-bottom">Partager avec commission</a>-->
            			<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#modal-default">
                Ajouter un critere
               </button>
-              
               <div class="modal fade in" id="modal-default" style="display: none; padding-right: 17px;">
           <div class="modal-dialog">
+			  <form method="post" action="ajoutercritere.aspx">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Ajouter crtiere</h4>
+                <h4 class="modal-title">Ajouter critère</h4>
+
+              </div>
+				<div class="modal-body">
+
+						<label for="critere">Identifiant</label>
+						<input type="text" class="form-control" id="id_critere" name ="id_critere" placeholder="Entrer l'identifiant">
+
+				</div>
+              <div class="modal-body">
+
+                  <label for="critere">Libellé</label>
+                  <input type="text" class="form-control" id="critere" name ="critere" placeholder="Entrer le critere">
+
               </div>
               <div class="modal-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Description du critere</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enterer le critere">
-                </div>
+
+                  <label for="ponderation">Pondération</label>
+                  <input type="text" class="form-control" id="ponderation" name="ponderation" placeholder="seuil de ponderation">
+
               </div>
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Enter le seuil de ponderation</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="seuil de ponderation">
-                </div>
-              </div>
+				<div class="modal-body">
+
+						<label for="categorie">Catégorie</label>
+						<select id="categorie" name="categorie">
+							<option value="Pedagogique">Activités pédagogiques</option>
+							<option value="Encadrement">Encadrements</option>
+							<option value="PAS">Production et activité scientifique</option>
+							<option value="RA">Responsabilités administratives</option>
+						</select>
+
+				</div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+				  <input type="submit" value="Enregistrer" class="btn btn-primary">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Annuler</button>
               </div>
-            </div>
+
+            </div></form>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
@@ -530,12 +299,13 @@
 				</div>
 				<div class="row">
 					<div class="col-md-2"></div>
-					
+
 					<div class="col-md-2">
-						
+
 					</div>
 
 				</div>
+
 			</section>
 		</div>
 

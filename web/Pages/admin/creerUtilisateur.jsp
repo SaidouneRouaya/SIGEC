@@ -75,7 +75,7 @@
 
 					<div class="register-box-body">
 						<h3 class="text-yellow">
-							<p class="login-box-msg">Nouveau candidat</p>
+							<p class="login-box-msg">Nouvel utilisateur</p>
 						</h3>
 
 						<form action="userajoute.aspx" method="post">
@@ -110,7 +110,7 @@
 									<OPTION value="receptionniste">Réceptionniste
 									<OPTION value="membrecommission" >Membre de commission
 									<OPTION value="controlleur">Controlleur
-									<OPTION value="candidat">Candidat
+									<!--<OPTION value="candidat">Candidat-->
 								</SELECT>
 							</div>
 							<div class="row">
