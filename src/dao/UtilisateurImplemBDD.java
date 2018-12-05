@@ -14,15 +14,6 @@ public class UtilisateurImplemBDD implements UtilisateurDAO {
 	List<Utilisateur> utilisateursattente = new ArrayList<Utilisateur>();
 
 	public void init(){
-		System.out.println("remplir les candidats");
-	/*	addUser(new Utilisateur((Long)1,"user1","nom1","username1","motdepass","Doctorant","Informatique","qs1", 111,"mail1@email.dz","Candidat"));
-		addUser(new Utilisateur("2","user2","nom2","username2","motdepass","Doctorant","Informatique","qs1", 111,"mail2@email.dz","Candidat"));
-		addUser(new Utilisateur("3","user3","nom3","username3","motdepass","Doctorant","Informatique","qs1", 111,"mail3@email.dz","Candidat"));
-		addUser(new Utilisateur("4","user4","nom4","username4","motdepass","Doctorant","Informatique","qs1", 111,"mail4@email.dz","Candidat"));
-		addUser(new Utilisateur("5","user5","nom5","username5","motdepass","Doctorant","Informatique","qs1", 111,"mail5@email.dz","Candidat"));
-		utilisateursattente.add(new Utilisateur("1","user1","nom1","username1","motdepass","Doctorant","Informatique","qs1", 111,"mail1@email.dz","Candidat"));
-		utilisateursattente.add(new Utilisateur("2","user1","nom2","username2","motdepass","Doctorant","Informatique","qs1", 111,"mail2@email.dz","Candidat"));
-		utilisateursattente.add(new Utilisateur("3","user1","nom3","username3","motdepass","Doctorant","Informatique","qs1", 111,"mail3@email.dz","Candidat"));*/
 	}
 	
 	@Override
@@ -121,13 +112,7 @@ public class UtilisateurImplemBDD implements UtilisateurDAO {
 	
 	
 	public List<Utilisateur> getAllCandidats2()
-	{/*
-		addUser(new Utilisateur("2","user1","nom2","username2","motdepass","Doctorant","Informatique","qs1", 111,"mail2@email.dz","Candidat"));
-		addUser(new Utilisateur("3","user1","nom3","username3","motdepass","Doctorant","Informatique","qs1", 111,"mail3@email.dz","Candidat"));
-		addUser(new Utilisateur("4","user1","nom4","username4","motdepass","Doctorant","Informatique","qs1", 111,"mail4@email.dz","Candidat"));
-		addUser(new Utilisateur("5","user1","nom5","username5","motdepass","Doctorant","Informatique","qs1", 111,"mail5@email.dz","Candidat"));
-*/
-		return utilisateurs;
+	{	return utilisateurs;
 	}
 
 	@Override

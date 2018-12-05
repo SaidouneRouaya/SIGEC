@@ -15,9 +15,6 @@ public class DossierCandidature implements Serializable {
 	private Long id_dossier;
 	private EtatDossier etat;
 	private Date datedepot;
-	//private final String lien ="C:\\Users\\Tosh\\eclipse-workspace\\SIGEC\\SIGEC\\Accuse_reception.pdf";
-
-
 	@ManyToOne
 	@JoinColumn(name = "id_candidat")
 	private Utilisateur candidat ;
@@ -31,12 +28,7 @@ public class DossierCandidature implements Serializable {
 	List<Document> listeDoc = new ArrayList<Document>();
 
 
-	/*
-    @ManyToOne
-    @JoinColumn(name="id_section")
-    private Section  section ;
 
-*/
 	public DossierCandidature( EtatDossier etat, Date datedepot) {
 		super();
 		this.etat = etat;
@@ -93,20 +85,5 @@ public class DossierCandidature implements Serializable {
 	public void setCandidat(Utilisateur candidat) {
 		this.candidat = candidat;
 	}
-	/*
-    public Receptionniste getReceptionniste() {
-        return receptionniste;
-    }
 
-    public void setReceptionniste(Receptionniste receptionniste) {
-        this.receptionniste = receptionniste;
-    }
-
-	public Section getSection() {
-		return section;
-	}
-
-	public void setSection(Section section) {
-		this.section = section;
-	}*/
 }

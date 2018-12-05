@@ -35,9 +35,9 @@ public class Evaluation implements Serializable,Comparable<Evaluation> {
 
 	//private Utilisateur user;
 
-	//private List<Critere> Grille = new ArrayList<Critere>();
+
 	public Evaluation(DossierCandidature dossier ,SessionEvaluation sess ,  Date date , int note){
-		//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
 		this.dossier = dossier;
 		this.session = sess;
 		this.date_evaluation=  date;
@@ -47,14 +47,7 @@ public class Evaluation implements Serializable,Comparable<Evaluation> {
 	public Long getID_evaluation() {
 		return id_evaluation;
 	}
-	/*
-        public Evaluation(int iD_evaluation, Date date_evaluation, int note_cumule) {
-            super();
-            ID_evaluation = iD_evaluation;
-            this.date_evaluation = date_evaluation;
-            this.note_cumule = note_cumule;
-        }
-    */
+
 	public void setID_evaluation(Long iD_evaluation) {
 		id_evaluation = iD_evaluation;
 	}

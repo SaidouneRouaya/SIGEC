@@ -14,13 +14,7 @@ public class DossierImplem implements DossierDAO{
 	private List<DossierCandidature> dossiers = new ArrayList<DossierCandidature>();
 	
 	public void init(){
-		System.out.println("remplir les dossiers");
-		/*addDossier(new DossierCandidature(EtatDossier.complet,new Date()));
-		addDossier(new DossierCandidature(EtatDossier.complet,new Date()));
-		addDossier(new DossierCandidature(EtatDossier.complet,new Date()));
-		addDossier(new DossierCandidature(EtatDossier.complet,new Date()));
-		addDossier(new DossierCandidature(EtatDossier.complet,new Date()));*/
-	}
+		}
 
 	@Override
 	public void addDossier(DossierCandidature d) {
@@ -57,8 +51,7 @@ public class DossierImplem implements DossierDAO{
 		// TODO Auto-generated method stub
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        List<DossierCandidature> liste = session.createQuery("from DossierCandidature").list()
-				/*session.createSQLQuery("select * from dossier").list()*/;
+        List<DossierCandidature> liste = session.createQuery("from DossierCandidature").list();
         session.getTransaction().commit();
         session.close();
         return liste;
