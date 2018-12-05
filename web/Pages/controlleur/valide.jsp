@@ -57,10 +57,10 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>Listes des dossiers validÃ©s</h1>
+				<h1>Listes des dossiers valides</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Acceuil</a></li>
-					<li class="active">Dossiers validÃ©s</li>
+					<li class="active">Dossiers valides</li>
 				</ol>
 
 			</section>
@@ -87,30 +87,73 @@
 										<sw:forEach begin="0" end="${ListeDossierValides.size()-1}" var="i" >
 		
 								
-										<tr>
-											<td>${ListeCandidats[i].nom } ${ListeCandidats[i].prenom }</td>
+										<tr id="hideVal">
+											<td>${ListeDossierValides[i].candidat.nom } ${ListeDossierValides[i].candidat.prenom }</td>
 											<td>${ListeDossierValides[i].datedepot}</td>
 											<td><strong><a href="dossierCandidatureValide.aspx">Consulter dossier</a></strong></td>
-											<td><a class="btn btn-block btn-success btn-xs">Partager</a></td>
+											
+											<td><button onClick="partagerDossier();" type="button" class="btn btn-block btn-success btn-xs">Valider</button></td>
+											
 										</tr>
 					</sw:forEach>
 									
 									</tbody>
-									<tfoot>
-										<tr>
-											<th>Candidat</th>
-											<th>Date candidature</th>
-											<th>Consulter dossier</th>
-											<th>Confirmer validation</th>
-										</tr>
-									</tfoot>
+									
 								</table>
 							</div>
 							<!-- /.box-body -->
 						</div>
 						<!-- /.box -->
+			              <div class="modal fade in" id="partagerAvecCommission" style="display: none; padding-right: 17px;">
+			          <div class="modal-dialog">
+			            <div class="modal-content">
+			              <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                  <span aria-hidden="true">×</span></button>
+			                <h4 class="modal-title">Partager le dossier avec un membre de commission</h4>
+			              </div>
+			              <div class="modal-body">
+			                <div class="form-group">
+			                  <h5>Choisissez un membre de commission à qui vous voulez partager le dossier</h5>
+			                  <select class="form-control">
+                    <option>Challal Rachid</option>
+                    <option>Ould Kara</option>
+                    <option>Ghoumari Abdessamad</option>
+                    <option>Challal Yacine</option>
+                    <option>Nader Fahima</option>
+                  </select>
+			                </div>
+			              </div>
+			              
+			              <div class="modal-footer">
+			                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+			                <button onClick="partageDefinitif();" type="button" class="btn btn-primary">Partager</button>
+			              </div>
+			            </div>
+			            <!-- /.modal-content -->
+			          </div>
+			          <!-- /.modal-dialog -->
+			        </div>						
 
-
+						<script type='text/javascript'>
+						
+							function annulerRejet(){
+								
+									   document.getElementById("hide").style.display = 'none';	 
+							}
+							document.getElementById("clickAnnuler").onclick = annulerRejet;
+							
+							function partagerDossier(){
+								$("#partagerAvecCommission").modal();
+								
+						}
+							function partageDefinitif(){
+								document.getElementById("hideVal").style.display = 'none';
+								$('#partagerAvecCommission').modal('hide');
+								
+						}
+						
+						</script>
 						<!-- /.box-body -->
 					</div>
 					<!-- /.box -->

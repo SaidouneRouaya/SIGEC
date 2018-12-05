@@ -1,6 +1,10 @@
 package service;
 
+import org.jcp.xml.dsig.internal.dom.DOMHMACSignatureMethod;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -9,7 +13,7 @@ import javax.persistence.*;
 @Table(name="utilisateur")
 public class Utilisateur implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -25,21 +29,23 @@ public class Utilisateur implements Serializable {
 	private Long id_utilisateur;
 	private String nom;
 	private String prenom;
-	
+
 	@Column(name="nom_utilisateur")
 	private String nomUtilisateur;
-	
+
 	@Column(name="mot_passe")
 	private String motdepasse;
 	private String grade;
-    private String domaine;
-    
+	private String domaine;
+
 	@Column(name="qst_passe")
-    private String Qestion_secrete;
+	private String Qestion_secrete;
 	private int droit_acces;
 	private String mail;
 	private String type;
 
+	@OneToMany
+	List<DossierCandidature> listeDossier = new ArrayList<DossierCandidature>();
 
 
 
@@ -226,5 +232,5 @@ public class Utilisateur implements Serializable {
 		this.type = type;
 	}
 
-		
+
 }

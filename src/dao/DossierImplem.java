@@ -113,19 +113,20 @@ public class DossierImplem implements DossierDAO{
 		dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
 		dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
 		dossier.add(new DossierCandidature(EtatDossier.rejete,new Date()));
-		return dossier;	
+		return dossier;
 	}
 	
 	@Override
 	public List<DossierCandidature> dossierAttente()
 	
 			{
-		List<DossierCandidature> dossier = new ArrayList<DossierCandidature>();
-		dossier.add(new DossierCandidature(EtatDossier.incomplet,new Date()));
-		dossier.add(new DossierCandidature(EtatDossier.incomplet,new Date()));
-		dossier.add(new DossierCandidature(EtatDossier.incomplet,new Date()));
-		dossier.add(new DossierCandidature(EtatDossier.incomplet,new Date()));
-		return dossier;
+				List<DossierCandidature> liste;
+				Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+				session.beginTransaction();
+				liste = session.createQuery("from DossierCandidature D where D.etat= '1'").list();
+				session.getTransaction().commit();
+				session.close();
+				return liste;
 			}
 	public List<DossierCandidature> dossierRejete()
 		{
@@ -146,5 +147,17 @@ dossier.add(new DossierCandidature(EtatDossier.valide,new Date()));
 dossier.add(new DossierCandidature(EtatDossier.valide,new Date()));
 return dossier;
 	}
-
+	@Override
+	public List <DossierCandidature> getDossierByUser(Long id_cand) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List <DossierCandidature> d = session.createQuery(
+				"from DossierCandidature D where D.candidat.id_utilisateur=:id_candidat")
+				.setLong("id_candidat",id_cand).list();
+		/*session.createSQLQuery("select * from dossier").list()*/;
+		session.getTransaction().commit();
+		session.close();
+		return d;
+	}
 }

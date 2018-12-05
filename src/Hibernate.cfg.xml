@@ -33,5 +33,7 @@
       <mapping class="service.Section"/>
       <mapping class="service.Candidat"/>
       <mapping class="service.Receptionniste"/>
+      <mapping class="service.Doc"/>
+      <mapping class="service.Document"/>
   </session-factory>
 </hibernate-configuration>

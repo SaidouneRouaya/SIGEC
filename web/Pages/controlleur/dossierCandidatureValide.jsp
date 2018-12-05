@@ -57,8 +57,7 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-           <a href="listDossierValides.aspx" class="btn btn-block btn-success btn-sm">Valider</a> 
-          <a href="listDossierRejetes.aspx" class="btn btn-block btn-danger btn-sm">Rejeter</a>
+           
            </br>
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -165,86 +164,93 @@
             <div class="box-footer">
               <ul class="mailbox-attachments clearfix">
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a target="_blank" href="${ListeDossierAttente[0].lien}"  class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Demande-manuscrite.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
-                    <a target="_blank" href="file:///C:/Users/Tosh/eclipse-workspace/SIGEC/SIGEC/Accuse_reception.pdf" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Attestation-travail.pdf</a>
+                    <a target="_blank" href="C:\\Users\\start\\eclipse-workspace\\SIGEC\\SIGEC\\Accuse_reception.pdf" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Attestation-travail.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a target="_blank" href="${ListeDossierAttente[2].lien}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-diplome-doctorat.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                         
                         </span>
                   </div>
                 </li>
                 
               <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-attestation-equivalence.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-arrete-maitre-conferences-A.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copies-decrets-nomination-fonctions-superieurs.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                  <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o  text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> CV-detaille.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                         
                         </span>
                   </div>
                 </li>
@@ -252,13 +258,14 @@
                 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-these-Doctorat.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
@@ -316,86 +323,93 @@
             <div class="box-footer">
               <ul class="mailbox-attachments clearfix">
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> activites-pedagogiques-C-A.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> pages-garde-memoires-magister-doctorats.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                         
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-diplome-doctorat.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                         
                         </span>
                   </div>
                 </li>
                 
               <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> copies-autorisations-soutenance.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copies-pages-garde-memoires-fin-etudes.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Exemplaires-ouvrages-pedagogiques.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                  <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Exemplaires-manuels-pedagogiques-edites.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
@@ -403,85 +417,92 @@
                 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Exemplaires-polycopies-edites.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Publications-internationales.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Brevet-invention-eventuellement.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Publications-nationales.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Communications-internationales.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Communications-nationales.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Activites-animation-scientifique.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
@@ -537,26 +558,28 @@
             <div class="box-footer">
               <ul class="mailbox-attachments clearfix">
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Fiche-candidature1.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>
 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Fiche-candidature2.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          
                         </span>
                   </div>
                 </li>

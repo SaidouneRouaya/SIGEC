@@ -45,7 +45,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dossier de candidature rejetés
+        Dossier de candidature
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
@@ -57,10 +57,162 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <!--  <a href="#" class="btn btn-block btn-success btn-sm">Valider</a> 
-          <a href="#" class="btn btn-block btn-danger btn-sm">Rejeter</a>
-           <a href="#" class="btn btn-primary btn-block margin-bottom">Partager avec commission</a>-->
-
+          <!--  <a href="listDossierValides.aspx" class="btn btn-block btn-success btn-sm">Valider</a> 
+          <a href="listDossierRejetes.aspx" class="btn btn-block btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">Rejeter</a>-->
+         
+          <button onClick="validationDossier();" type="button" class="btn btn-block btn-success">Valider</button>
+          <button onClick="rejeterDossier();" type="button" class="btn btn-block btn-danger">Rejeter</button>
+           </br>
+           
+           <div class="modal modal-danger fade in" id="messageValidationEchec" style="display: none; padding-right: 17px;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Message d'erreur</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Vous ne pouvez pas valider le dossier, car il contient des documents non validés ou bien rejetés.</label>
+                  
+                </div>
+              </div>
+               <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button> -->
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Fermer</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+           
+           <div class="modal modal-success fade in" id="messageValidationReussi" style="display: none; padding-right: 17px;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Message de succée</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Le dossier a été correctement validé.</label>
+                  
+                </div>
+              </div>
+               <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button> 
+                <a onClick="afficherListeValide();" type="button" class="btn btn-default pull-right" data-dismiss="modal">Acceder à la liste des dossiers validés</a>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        
+           <div class="modal modal-danger fade in" id="messageRejeterEchec" style="display: none; padding-right: 17px;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Message d'erreur</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Vous ne pouvez pas rejeter le dossier, car tout ses documents sont validés.</label>
+                  
+                </div>
+              </div>
+               <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button> -->
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Fermer</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+           
+             <div class="modal modal-success fade in" id="messageRejeterReussi" style="display: none; padding-right: 17px;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Message de succée</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Le dossier à été rejeté correctement.</label>
+                  
+                </div>
+              </div>
+               <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button onClick="afficherListeRejets();" type="button" class="btn btn-default pull-right" data-dismiss="modal">Voir la liste des rejets</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+           
+          <script type='text/javascript'>//<![CDATA[ 
+          				function afficherListeRejets(){
+          					window.location.href='http://localhost:8090/listDossierRejetes.aspx'
+          				}
+          				function afficherListeValide(){
+          					window.location.href='http://localhost:8090/listDossierValides.aspx'
+          				}
+				    
+				        function validationDossier(){
+				        	var a = document.getElementById("doc1");
+				        	var b = document.getElementById("doc2");
+				        	var c = document.getElementById("doc3");
+				        	var d = document.getElementById("doc4");
+				        	var e = document.getElementById("doc5");
+				        	var f = document.getElementById("doc6");
+				        	var g = document.getElementById("doc7");
+				        	var h = document.getElementById("doc8");
+				        	
+				        
+				        	if (a.className == "fa fa-file-pdf-o text-green" && b.className == "fa fa-file-pdf-o text-green" && c.className == "fa fa-file-pdf-o text-green" && d.className == "fa fa-file-pdf-o text-green" && e.className == "fa fa-file-pdf-o text-green" && f.className == "fa fa-file-pdf-o text-green" && g.className == "fa fa-file-pdf-o text-green" && h.className == "fa fa-file-pdf-o text-green"){
+				        		$("#messageValidationReussi").modal();}
+				        		else {
+				        			$("#messageValidationEchec").modal();
+				        		}
+				        		
+				        	}
+				        function rejeterDossier(){
+				        	var a = document.getElementById("doc1");
+				        	var b = document.getElementById("doc2");
+				        	var c = document.getElementById("doc3");
+				        	var d = document.getElementById("doc4");
+				        	var e = document.getElementById("doc5");
+				        	var f = document.getElementById("doc6");
+				        	var g = document.getElementById("doc7");
+				        	var h = document.getElementById("doc8");
+				        	
+				        
+				        	if (a.className == "fa fa-file-pdf-o text-red" || b.className == "fa fa-file-pdf-o text-red" || c.className == "fa fa-file-pdf-o text-red" || d.className == "fa fa-file-pdf-o text-red" || e.className == "fa fa-file-pdf-o text-red" || f.className == "fa fa-file-pdf-o text-red" || g.className == "fa fa-file-pdf-o text-red" || h.className == "fa fa-file-pdf-o text-red"){
+				        		$("#messageRejeterReussi").modal();}
+				        		else {
+				        			$("#messageRejeterEchec").modal();
+				        		}
+				        		
+				        	}
+				        	   
+				        
+				       
+				    
+				        
+				//]]>  
+				</script>
+          
+          
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Dossiers</h3>
@@ -166,93 +318,102 @@
             <div class="box-footer">
               <ul class="mailbox-attachments clearfix">
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i id="doc1" class="fa fa-file-pdf-o text-green" id="demo"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a target="_blank" href="${ListeDossierAttente[0].lien}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Demande-manuscrite.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          <a href="#" onclick="valide('doc1')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" onClick="rejet('doc1');" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
 
+
+  
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-red"></i></span>
+                  <span class="mailbox-attachment-icon"><i id="doc2" class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
-                    <a target="_blank" href="${ListeDossierAttente[1].lien}"class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Attestation-travail.pdf</a>
+                    <a target="_blank" href="C:\\Users\\start\\eclipse-workspace\\SIGEC\\SIGEC\\Accuse_reception.pdf" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Attestation-travail.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          <a href="#" onclick="valide('doc2')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" onclick="rejet('doc2')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i id="doc3" class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a target="_blank" href="${ListeDossierAttente[2].lien}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-diplome-doctorat.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          <a href="#" onclick="valide('doc3')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" onclick="rejet('doc3')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
               <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-red"></i></span>
+                  <span class="mailbox-attachment-icon"><i id="doc4" class="fa fa-file-pdf-o text-green"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-attestation-equivalence.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          <a href="#" onclick="valide('doc4')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" onclick="rejet('doc4')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i id="doc5" class="fa fa-file-pdf-o text-red"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-arrete-maitre-conferences-A.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          <a href="#" onclick="valide('doc5')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" onclick="rejet('doc5')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green "></i></span>
+                  <span class="mailbox-attachment-icon"><i id="doc6" class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copies-decrets-nomination-fonctions-superieurs.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          <a href="#" onclick="valide('doc6')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" onclick="rejet('doc6')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                  <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i id="doc7" class="fa fa-file-pdf-o  text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> CV-detaille.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          <a href="#" onclick="valide('doc7')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" onclick="rejet('doc7')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
@@ -260,14 +421,15 @@
                 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i id="doc8" class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-these-Doctorat.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
+                          <a href="#" onclick="valide('doc8')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" onclick="rejet('doc8')" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
@@ -325,93 +487,100 @@
             <div class="box-footer">
               <ul class="mailbox-attachments clearfix">
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> activites-pedagogiques-C-A.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> pages-garde-memoires-magister-doctorats.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copie-diplome-doctorat.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
               <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> copies-autorisations-soutenance.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Copies-pages-garde-memoires-fin-etudes.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Exemplaires-ouvrages-pedagogiques.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                  <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Exemplaires-manuels-pedagogiques-edites.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
@@ -419,92 +588,99 @@
                 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Exemplaires-polycopies-edites.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Publications-internationales.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Brevet-invention-eventuellement.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Publications-nationales.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Communications-internationales.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Communications-nationales.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Activites-animation-scientifique.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
@@ -560,28 +736,30 @@
             <div class="box-footer">
               <ul class="mailbox-attachments clearfix">
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Fiche-candidature1.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
 
                 
                 <li>
-                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-green"></i></span>
+                  <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o text-yellow"></i></span>
 
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> Fiche-candidature2.pdf</a>
                         <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-download"></i></a>
                           <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-green"></i></a>
+                          <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-circle text-red"></i></a>
                         </span>
                   </div>
                 </li>
@@ -613,7 +791,19 @@
   </div>
   <!-- /.content-wrapper -->
   
-
+  
+			    <script type='text/javascript'>//<![CDATA[ 
+				    
+				        function rejet(id){
+				        	document.getElementById(id).className = "fa fa-file-pdf-o text-red";   
+				        }
+				        function valide(id) {
+		    				
+		    				document.getElementById(id).className = "fa fa-file-pdf-o text-green";
+							}
+				    
+				//]]>  
+				</script>
 
 </div>
 <!-- jQuery 3 -->

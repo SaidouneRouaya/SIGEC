@@ -97,6 +97,7 @@
 										<tr>
 											<th>Candidat</th>
 											<th>Date candidature</th>
+											<th>Date D evaluation</th>
 											<th>Cumul des points</th>
 										</tr>
 									</tfoot>

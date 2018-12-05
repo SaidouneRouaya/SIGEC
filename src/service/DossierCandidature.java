@@ -1,7 +1,9 @@
 package service;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -21,19 +23,38 @@ public class DossierCandidature implements Serializable {
 	private Utilisateur candidat ;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_recep")
-    private  Utilisateur receptionniste ;
-
 	@ManyToOne
-	@JoinColumn(name="id_section")
-	private Section  section ;
+	@JoinColumn(name = "id_recep")
+	private  Utilisateur receptionniste ;
+
+	@OneToMany
+	List<Document> listeDoc = new ArrayList<Document>();
 
 
+	/*
+    @ManyToOne
+    @JoinColumn(name="id_section")
+    private Section  section ;
+
+*/
 	public DossierCandidature( EtatDossier etat, Date datedepot) {
 		super();
 		this.etat = etat;
 		this.datedepot = datedepot;
+	}
+
+	public DossierCandidature(EtatDossier etat, Date datedepot, Utilisateur candidat, Utilisateur receptionniste, Section section) {
+		this.etat = etat;
+		this.datedepot = datedepot;
+		this.candidat = candidat;
+		this.receptionniste = receptionniste;
+		//this.section = section;
+	}
+	public DossierCandidature(EtatDossier etat, Date datedepot, Utilisateur candidat, Utilisateur receptionniste) {
+		this.etat = etat;
+		this.datedepot = datedepot;
+		this.candidat = candidat;
+		this.receptionniste = receptionniste;
 	}
 
 	public DossierCandidature(){
@@ -80,12 +101,12 @@ public class DossierCandidature implements Serializable {
     public void setReceptionniste(Receptionniste receptionniste) {
         this.receptionniste = receptionniste;
     }
-    */
+
 	public Section getSection() {
 		return section;
 	}
 
 	public void setSection(Section section) {
 		this.section = section;
-	}
+	}*/
 }

@@ -74,7 +74,7 @@
 
 
 					<div class="register-box-body">
-						<h3 class="text-yellow">
+						<h3 class="text-black">
 							<p class="login-box-msg">Nouvel utilisateur</p>
 						</h3>
 

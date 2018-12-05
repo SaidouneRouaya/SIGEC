@@ -96,9 +96,9 @@
 										alt="User Avatar">
 								</div>
 				<!-- /.widget-user-image -->
-								<h3 class="widget-user-username">${ListeCandidats[i].nom } ${ListeCandidats[i].prenom }</h3>
-								<h5 class="widget-user-desc">${ListeCandidats[i].grade }</h5>
-								<h5 class="widget-user-desc">${ListeCandidats[i].mail}</h5>
+								<h3 class="widget-user-username">${ListeDossierAttente[i].candidat.nom } ${ListeCandidats[i].prenom }</h3>
+								<h5 class="widget-user-desc">${ListeDossierAttente[i].candidat.grade }</h5>
+								<h5 class="widget-user-desc">${ListeDossierAttente[i].candidat.mail}</h5>
 								<h5 class="widget-user-desc">${ListeDossierAttente[i].datedepot}</h5>
 							</div>
 								<div class="box-footer padding">																																																																																																																																																																																																																																																																																																										
@@ -106,7 +106,7 @@
 
 									<li><p class="pull-left">Dossier de candidature</p>
 										<p class="pull-right">
-									 <strong><a class="btn btn-block btn-success btn-xs" href="dossierCandidatureValide.aspx">Consulter dossier</a></strong>
+									 <strong><a class="btn btn-block btn-success btn-xs" href="dossierCandidature.aspx">Consulter dossier</a></strong>
 												
 									</p></li>
 

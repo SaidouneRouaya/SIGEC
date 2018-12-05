@@ -18,4 +18,5 @@ public interface DossierDAO {
 	public List<DossierCandidature> getAllDossierComplet();
 	public List<DossierCandidature> getAllDossierEvalue();
 	public void SetDossierEval(Long id, int etat);
+	public List <DossierCandidature> getDossierByUser(Long id_cand);
 }

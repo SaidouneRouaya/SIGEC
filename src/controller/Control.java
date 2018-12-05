@@ -1,9 +1,6 @@
 package controller;
 
-import dao.CritereDAO;
-import dao.DossierDAO;
-import dao.EvaluationDAO;
-import dao.UtilisateurDAO;
+import dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +23,7 @@ public class Control {
     private List<Critere> criteres_PAS = new ArrayList<Critere>();
     private List<Critere> criteres_RA = new ArrayList<Critere>();
     private Utilisateur utilisateur;
+    private Long id_cand;
 
     @Autowired
     CritereDAO crit;
@@ -38,6 +36,11 @@ public class Control {
     @Autowired
     DossierDAO dossier;
 
+    @Autowired
+    DocDAO doc;
+
+    @Autowired
+    DocumentDAO document;
     /****************************************************************** Login *****************************************************/
     @ModelAttribute("utilisateur")
     public Utilisateur setUpUserForm() {
@@ -135,9 +138,64 @@ public class Control {
         return "receptionniste/creerCandidat";
     }
 
-    @RequestMapping(value="/checklist")
-    public String verifDossier(Model model)
+
+
+    @RequestMapping(value="/checkListTemp")
+    public String AjoutCandidat (Model model, @RequestParam Map <String,String> param)
     {
+        /** Ajout du candidat **/
+
+        String email= param.get("mail");
+        Utilisateur candidat = new Utilisateur(param.get("nom"), param.get("prenom"),
+                "nomUtilisateur"+param.get("nom"), "motdepasse"+param.get("nom"),
+                "", param.get("domaine"), "", 0, email, "Candidat");
+
+        user.addUser(candidat);
+
+        id_cand=candidat.getid_utilisateur();
+
+        //à enlever plus tard
+        Utilisateur u =user.getUserByEmail("mailreceptionniste@gmail.dz");
+        // c bon à enleverid_dossier
+
+        DossierCandidature d=new DossierCandidature(EtatDossier.incomplet,new Date(),candidat,u);
+        dossier.addDossier(d);
+
+
+        List<Doc> docs = doc.getAllDoc();
+
+        for (Doc doc:docs) {
+            System.out.println("ajout nv document \n");
+
+            document.addDocument(new Document("","","0", doc.getCategorie(),doc.getId_document(),doc.getLibelle(),d));
+        }
+
+        return "redirect:/checklist.aspx";
+    }
+
+
+
+
+    @RequestMapping(value="/checklist")
+    public String verifDossier(Model model, @RequestParam Map<String,String> param)
+    {
+
+        /** Récupération de la liste des documents **/
+
+        if (param.get("id_cand")!=null) id_cand = Long.parseLong(param.get("id_cand"));
+        List <DossierCandidature> d = dossier.getDossierByUser(id_cand);
+        System.out.println(id_cand);
+        System.out.println(d.get(0));
+
+        model.addAttribute("ListeDossierPedagog", document.getDocumentByDossierByCategory(d.get(0),"Pedagog"));
+        List<Document> liste = document.getDocumentByDossierByCategory(d.get(0),"Admin");
+        model.addAttribute("ListeDossierAdmin", document.getDocumentByDossierByCategory(d.get(0),"Admin"));
+        for (Document docc:liste
+                ) {
+            System.out.println("fjjfj"+docc.getDisponible());
+        }
+        model.addAttribute("ListeDossierComplem",document.getDocumentByDossierByCategory(d.get(0),"Complem"));
+
         return "receptionniste/controlePapier";
     }
 
@@ -145,6 +203,8 @@ public class Control {
     @RequestMapping(value="/dossierAttentes")
     public String dossierenAttente(Model model)
     {
+
+
         model.addAttribute("ListeCandidats", user.getAllCandidats());
         model.addAttribute("ListeDossiers", dossier.getAllDossiers());
         return "receptionniste/DossiersAttentes";
@@ -180,12 +240,22 @@ public class Control {
         return "receptionniste/liste-candidats";
     }
 
-    @RequestMapping(value="/listattenteincomplet")
-    public String mettreDossierAttente(Model model)
+    @RequestMapping(value="/listattenteincomplet", method = RequestMethod.POST)
+    //public String mettreDossierAttente(Model model, @RequestParam Map <String,String> param)
+    public String mettreDossierAttente(Model model,@RequestParam(required = false) List<Integer> checkbox)
     {
-        user.addUserAttente(new Utilisateur((long) 6,"nouveauNom","nouveauPrenom","username1","motdepass","Doctorant","nouveauDomaine","qs1", 111,"mail1@email.dz","Candidat"));
-       // dossier.addDossier(new DossierCandidature("1",EtatDossier.complet,"18/04/2018"));
-        model.addAttribute("ListeCandidats", user.getAllCandidatsAttente());
+
+        List <DossierCandidature> d = dossier.getDossierByUser(id_cand);
+
+        if(checkbox != null) { // if checkbox is not selected it is null
+            for(Integer check: checkbox) {
+                Document doc=document.getDocumentByDossierByID(d.get(0),check);
+                document.documentDispo(doc.getId_document());
+                System.out.println(check);
+            }
+        }
+
+        model.addAttribute("ListeCandidats", user.getAllCandidats());
         model.addAttribute("ListeDossiers", dossier.getAllDossiers());
         return "receptionniste/DossiersAttentes";
     }
@@ -197,7 +267,7 @@ public class Control {
     public String pageControlleur (Model model)
     {
         model.addAttribute("ListeDossierAttente", dossier.dossierAttente());
-        model.addAttribute("ListeCandidats", user.getAllCandidats());
+        //model.addAttribute("ListeCandidats", user.getAllCandidats());
         return "controlleur/attente";
     }
 
@@ -237,12 +307,15 @@ public class Control {
         model.addAttribute("ListeDossierRejetes", dossier.dossierRejete());
         return "controlleur/dossierCandidatureRejete";
     }
-    @RequestMapping(value="/dossierCandidatureValide")
+    @RequestMapping(value="/dossierCandidature")
     public String DossierCanVal(Model model){
         model.addAttribute("ListeDossierRejetes", dossier.dossierRejete());
-        return "controlleur/dossierCandidatureValides";
+        return "controlleur/dossierCandidature";
     }
-
+    @RequestMapping(value="/dossierCandidatureValide")
+    public String DossierCan(Model model){
+        return "controlleur/dossierCandidatureValide";
+    }
     /* Membre commission */
 
     @RequestMapping(value="/GrillEval")
@@ -290,19 +363,24 @@ public class Control {
         this.criteres.addAll(this.criteres_Encadrement);
         this.criteres.addAll(this.criteres_PAS);
         this.criteres.addAll(this.criteres_RA);
-        model.addAttribute("CandidatName",user.getUserByID(Long.parseLong(param.get("IdCand"))).getNom());
-        model.addAttribute("NoteEval",noteEval);
+        // model.addAttribute("CandidatName",user.getUserByID(Long.parseLong(param.get("IdCand"))).getNom());
+        //model.addAttribute("NoteEval",noteEval);
         Date date = new Date();
         DossierCandidature doss = dossier.getDossierByID(Long.parseLong(param.get("IdDossier")));
         // doss.setEtat(EtatDossier.evalue);
+        eval = new Evaluation(doss ,ev.getAlSessions().get(0), date,noteEval);
+        model.addAttribute("Evaluation",eval);
         ev.createEvaluation(doss ,ev.getAlSessions().get(0), date,noteEval);
         dossier.SetDossierEval(Long.parseLong(param.get("IdDossier")),5);
         System.out.println(noteEval);
-        return "redirect:/ListeCandEval.aspx";
+        return "membrecomm/Test1";
     }
+
 
     @RequestMapping(value="/ListeCandEval")
     public String pageListeCandEval(Model model){
+
+
         List<Evaluation> listeev = ev.getAllEvaluations();
         Collections.sort(listeev);
         model.addAttribute("ListeEavluations",listeev);
@@ -426,6 +504,37 @@ public class Control {
         model.addAttribute("nbCandidats",user.getNbCandidats());
 
         return "admin/tableauBord";
+    }
+
+
+    /* Fonctions candidat */
+    @RequestMapping(value="/moncompte")
+    public String CompteCandidat(Model model){
+        return "candidat/etat_dossier_candidat";
+    }
+
+
+    @RequestMapping(value="/upload_candidat")
+    public String CompteCandidatUpload(Model model){
+        return "candidat/IHM_candidat";
+    }
+
+    @RequestMapping(value="/self_evaluation_candidat")
+    public String CompteCandidatevaluation(Model model){
+
+        return "candidat/auto_evaluation_candidat";
+    }
+
+    @RequestMapping(value="/ResultEvalCandidat")
+    public String pageResultEvallCandidat(Model model){
+        model.addAttribute("ListeCandidats", user.getAllCandidats());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd ");
+        Date date = new Date();
+        dateform = dateFormat.format(date);
+        model.addAttribute("Dateauj",dateform);
+
+
+        return "candidat/resultevalcandidat";
     }
 
 }

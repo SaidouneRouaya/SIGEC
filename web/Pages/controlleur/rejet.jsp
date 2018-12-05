@@ -59,7 +59,7 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>Listes des dossiers rejetÃ©s</h1>
+				<h1>Listes des dossiers rejetes</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Acceuil</a></li>
 					<li class="active">Dossiers rejetés</li>
@@ -88,29 +88,31 @@
 										<tbody>
 			<sw:forEach begin="0" end="${ListeDossierRejetes.size()-1}" var="i" >
 								
-										<tr>
-											<td>${ListeCandidats[i].nom } ${ListeCandidats[i].prenom }</td>
+										<tr id="hide">
+											<td>${ListeDossierRejetes[i].candidat.nom } ${ListeDossierRejetes[i].candidat.prenom }</td>
 											<td>${ListeDossierRejetes[i].datedepot}</td>
 											<td><strong><a  href="dossierCandidatureRejete.aspx">Consulter dossier</a></strong></td>
-											<td><a href="listDossierrRejetes.aspx" class="btn btn-block btn-danger btn-xs">Annuler</a> </td>
+											<td><button onClick="annulerRejet();" type="button" class="btn btn-block btn-danger btn-xs">Annuler</button></td>
+											
 										</tr>
 					</sw:forEach>
 										
 								</tbody> 
-									<tfoot>
-										<tr>
-											<th>Candidat</th>
-											<th>Date candidature</th>
-											<th>Consulter dossier</th>
-											<th>Annuler rejet</th>
-										</tr>
-									</tfoot>
+									
 								</table>
 							</div>
 							<!-- /.box-body -->
 						</div>
 						<!-- /.box -->
-
+						<script type='text/javascript'>
+						
+							function annulerRejet(){
+								
+									   document.getElementById("hide").style.display = 'none';	 
+							}
+							document.getElementById("clickAnnuler").onclick = annulerRejet;
+						
+						</script>
 
 						<!-- /.box-body -->
 					</div>

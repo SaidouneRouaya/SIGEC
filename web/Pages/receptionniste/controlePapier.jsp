@@ -1,3 +1,4 @@
+<%@ taglib prefix="tg" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -58,223 +59,119 @@
     </section>
     
     <!-- Main content -->
-    
+
+
    <section class="content">
     <h2 class="page-header"></h2>
 
       <div class="row">
-        
-      <div class="col-md-9">
-      <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_1" data-toggle="tab">Dossier administratif</a></li>
-              <li><a href="#tab_2" data-toggle="tab">Dossier pedagogique et scientifique </a></li>
-              <li><a href="#tab_3" data-toggle="tab">Dossier complementaire </a></li>
+          <form action="/listattenteincomplet.aspx" method="post">
+          <div class="col-md-9">
+              <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a href="#tab_1" data-toggle="tab">Dossier administratif</a></li>
+                          <li><a href="#tab_2" data-toggle="tab">Dossier pedagogique et scientifique </a></li>
+                          <li><a href="#tab_3" data-toggle="tab">Dossier complementaire </a></li>
 
-              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane active" id="tab_1">
-              <div id="collapseOne" class="panel-collapse collapse in">
-                    
-                  <div class="box-body">
-                    <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Demande manuscrite adressee au President de la Commission universitaire nationale 
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Attestation de travail recente
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Copie du diplome de doctorat d Etat ou du titre d habilitation universitaire
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                     Copie de l attestation d equivalence "Dans le cas d un diplome etranger"
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Copie de l arrete de maitre de conferences classe A
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Curriculum vitae detaille
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Copies des decrets et/ou des arretes de nomination a des fonctions ou postes superieurs
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Copie de la these de Doctorat
-                    </label>
-                  </div>
-                    </div>
-                  
-                 </div>
-                
-              </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_2">
-                 <div class="box-body">
-				<div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Compte rendu des activites pedagogiques et scientifiques depuis la date d acces au grade de maitre de conferences classe A 
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Copies des pages de garde des memoires de magister et/ou theses de doctorats ou doctorats d Etat diriges et soutenus  accompagnees 
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      copies des autorisations et des proces verbaux de soutenance. 
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Copies des pages de garde des memoires de fin d etudes de masters encadres et soutenus.
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Exemplaires des ouvrages pedagogiques edites.
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Exemplaires des manuels pedagogiques edites.
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Exemplaires  des polycopies edites.
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Publications internationales "revues, periodiques, ouvrages, actes et proceedings edites" 
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Brevet d invention  eventuellement 
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Publications nationales "revues, periodiques, ouvrages, actes et proceedings edites".
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Communications internationales, exemplaires originaux
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Communications nationales, exemplaires originaux  
-                    </label>
-                  </div>
-                  
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Activites d animation scientifique "Organisation de colloques, expertise, membre de comite de lecture, chef ou membre d un projet de recherche"
-                    </label>
-                  </div>
-                    </div>
-                  
+                          <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                        </ul>
+                      <!-- Admin -->
 
-                  </div>
-                  
-                
-                 
-              
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_3">
-              
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="tab_1">
+                          <div id="collapseOne" class="panel-collapse collapse in">
+
                               <div class="box-body">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox">
-                      Fiche de candidature "en deux 02 exemplaires"
-                    </label>
+                                  <tg:forEach begin="0" end="${ListeDossierAdmin.size() -1}" var="i" >
+                                <div class="checkbox">
+                                        <label>
+                                            <tg:choose>
+                                                <tg:when test="${ListeDossierAdmin[i].disponible.equals('1')}">
+                                                    <input type="checkbox" name="checkbox" value="${ListeDossierAdmin[i].id_doc}" checked="checked">
+                                                </tg:when>
+                                                <tg:otherwise>
+                                                    <input type="checkbox" name="checkbox" value="${ListeDossierAdmin[i].id_doc}" >
+                                                </tg:otherwise>
+                                            </tg:choose>
+                                              ${ListeDossierAdmin[i].libelle}
+                                            </label>
+                              </div>
+                                  </tg:forEach>
+                             </div>
+                          </div>
+                          </div>
+                          <!-- Pedagogique -->
+                          <div class="tab-pane" id="tab_2">
+                             <div class="box-body">
+
+                                <tg:forEach begin="0" end="${ListeDossierPedagog.size() -1}" var="i" >
+                                    <div class="checkbox">
+                                        <label>
+                                            <tg:choose>
+                                                <tg:when test="${ListeDossierPedagog[i].disponible.equals('1')}">
+                                                    <input type="checkbox" name="checkbox" value="${ListeDossierPedagog[i].id_doc}" checked="checked">
+                                                </tg:when>
+                                                <tg:otherwise>
+                                                    <input type="checkbox" name="checkbox" value="${ListeDossierPedagog[i].id_doc}" >
+                                                </tg:otherwise>
+                                            </tg:choose>
+                                                ${ListeDossierPedagog[i].libelle}
+                                            </label>
+                                    </div>
+                                </tg:forEach>
+
+                                </div>
+                              </div>
+
+                          <!-- /.tab-pane -->
+                          <div class="tab-pane" id="tab_3">
+
+                                          <div class="box-body">
+
+                                  <tg:forEach begin="0" end="${ListeDossierComplem.size() -1}" var="i" >
+                                      <div class="checkbox">
+                                          <label>
+                                              <tg:choose>
+                                                  <tg:when test="${ListeDossierComplem[i].disponible.equals('1')}">
+                                                      <input type="checkbox" name="checkbox" value="${ListeDossierComplem[i].id_doc}" checked="checked">
+                                                  </tg:when>
+                                                  <tg:otherwise>
+                                                      <input type="checkbox" name="checkbox" value="${ListeDossierComplem[i].id_doc}" >
+                                                  </tg:otherwise>
+                                              </tg:choose>
+                                                  ${ListeDossierComplem[i].libelle}
+                                               </label>
+                                      </div>
+                                  </tg:forEach>
+
+                                </div>
+
+                          </div>
+                          <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+
+
+
                   </div>
-
-
-                    </div>
-                                   
-              </div>
-              <!-- /.tab-pane -->
-            </div>
-            <!-- /.tab-content -->
           </div>
-          
+
+
+          <div class="col-md-3">
+
+              <input type ="submit" name="complet" class="btn btn-block btn-success btn-sm" value="Complet">
+              <input type ="submit" name="attente" class="btn btn-block btn-success btn-sm" value="En attente">
+          </div>
+          </form>
       </div>
-      
-      <div class="col-md-3">
-        <a href="listcandrecepcomplet.aspx" class="btn btn-block btn-success btn-sm">Complet</a> 
-          <a href="listattenteincomplet.aspx" class="btn btn-block btn-danger btn-sm">En attente</a>
-        </div>
-         
-     </div>
-    </section>
+
+   </section>
+
+
+
+  </div>
 </div>
 
-
- 
-
-
-</div>
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->

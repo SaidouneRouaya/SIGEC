@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-			        <%@ taglib prefix="tg" uri="http://java.sun.com/jsp/jstl/core" %>
-                    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+		        <%@ taglib prefix="tg" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>SIGEC | Liste des candidats à évaluer</title>
+<title>SIGEC | Liste des résultats</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -44,12 +42,12 @@
 	<div class="wrapper">
 
 		<!-- contains the header -->
-		<%@ include file="../header-membrecomm.jsp"%>
+		<%@ include file="../header-candidat.jsp"%>
 		<!-- contains the header -->
 
 
 		<!-- sidebar-menu. contains the logo, sidebar, user informations, menu, searchbar -->
-		<%@ include file="../menu-membrecomm.jsp"%>
+		<%@ include file="../menu-candidat.jsp"%>
 		<!-- sidebar-menu. contains the logo, sidebar, user informations, menu, searchbar -->
 
 		<!-- Content Wrapper. Contains page content -->
@@ -57,11 +55,11 @@
 			<!-- Header content -->
 			<section class="content-header">
 			<h1>
-				Liste des candidats à évaluer
+				Liste des résultats d'évaluation
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
-				<li class="active">Liste des candidats</li>
+				<li class="active">Liste des résultats</li>
 			</ol>
 			</section>
 
@@ -79,29 +77,25 @@
 										<tr>
 											<th>Candidat</th>
 											<th>Date candidature</th>
-											<th>Consulter dossier</th>
-											<th>Evaluer le dossier</th>
+											<th>Cumul des points</th>
 
 										</tr>
 									</thead>
 									<tbody>
-									 <tg:forEach begin="0" end="${ListeDossiers.size() -1}" var="i" >
+										 <tg:forEach begin="0" end="${ListeCandidats.size() -1}" var="i" >
 		      									<tr>
-													     <td>${ListeDossiers[i].candidat.nom}</td>
-													     	<td><fmt:formatDate value="${ListeDossiers[i].datedepot}" pattern="yyyy-MM-dd " /></td>
-											      			<td><strong><a href="dossiercomm.aspx">Consulter dossier</a></strong></td>
-											              <td><strong><a href="GrillEval.aspx?ident=${ListeDossiers[i].ID_dossier}">Evaluer dossier</a></strong></td>
+													<td>${ListeCandidats[i].nom }</td>
+													<td>${Dateauj}</td>
+													<td>${ 150 + i*11}</td>
 												
 												</tr>
-											</tg:forEach>	
-										
+											</tg:forEach>		
 									</tbody>
 									<tfoot>
 										<tr>
 											<th>Candidat</th>
 											<th>Date candidature</th>
-											<th>Consulter dossier</th>
-											<th>Evaluer le dossier</th>
+											<th>Cumul des points</th>
 										</tr>
 									</tfoot>
 								</table>
@@ -117,9 +111,6 @@
 				</div>
 			</section>
 		</div>
-
-
-
 
 
 	</div>

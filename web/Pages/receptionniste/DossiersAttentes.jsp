@@ -63,6 +63,7 @@
 
 							<!-- /.box-header -->
 							<div class="box-body">
+
 								<table id="example2" class="table table-bordered table-hover">
 									<thead>
 										<tr>
@@ -76,11 +77,14 @@
 									</thead>
 									<tbody>
 									<c:forEach begin="0" end="${ListeCandidats.size()-1}" var="i" >
-									
+									<form action="checklist.aspx" method="post">
 										<tr>
 											<td>${ListeCandidats[i].nom} ${ListeCandidats[i].prenom }</td>
 											<td>${ListeDossiers[i].datedepot}</td>
-											<td><strong><a href="controlPapierAttente.aspx">Voir checklist</a></strong></td>
+											<td>
+												<input type="submit" name="Voir checklist">
+												<input type="hidden" name ="id_cand" value="${ListeCandidats[i].getid_utilisateur()}">
+											</td>
 											<td>
 												<div class="row">
 												<div class="col-md-8">
@@ -97,11 +101,13 @@
 											<td><a href="C:\Users\start\eclipse-workspace\SIGEC\SIGEC\Accusé_réception_incomplet.pdf" target = "_blank">Imprimer l'accusé de réception</a></td>
 
 										</tr>
+									</form>
 									</c:forEach>
-										
+
 									</tbody>
 									
 								</table>
+
 							</div>
 							<!-- /.box-body -->
 						</div>

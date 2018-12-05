@@ -71,7 +71,7 @@
   <div class="register-box-body">
     <h3 class="text-yellow"><p class="login-box-msg">Nouveau candidat</p></h3>
 
-    <form action="checklist.aspx" method="post">
+    <form action="/checkListTemp.aspx" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Nom" name="nom" value="nouveauNom">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -101,7 +101,7 @@
         <!-- /.col -->
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Créer</button>
+          <button type="submit"  class="btn btn-primary btn-block btn-flat">Créer</button>
         </div>
         <!-- /.col -->
       </div>

@@ -114,7 +114,7 @@
                 <div class="modal fade in" id="modal-default" style="display: none; padding-right: 17px;">
                     <div class="modal-dialog">
                         <div class="register-box-body">
-                            <h3 class="text-yellow">
+                            <h3 class="text-black">
                                 <p class="login-box-msg">Nouvel Utilisateur</p>
                             </h3>
 

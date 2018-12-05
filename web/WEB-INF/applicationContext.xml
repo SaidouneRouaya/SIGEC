@@ -7,4 +7,6 @@
     <bean class="dao.DossierImplem" id="idDossier" init-method="init"></bean>
     <bean class="dao.EvaluationImplem" id="iDAO2" init-method="init"></bean>
     <bean class="dao.CritereImplem" id="idCritere" init-method="init"></bean>
+    <bean class="dao.DocImplem" id="iDdoc" init-method="init" ></bean>
+    <bean class="dao.DocumentImplem" id="iDdocument" init-method="init" ></bean>
 </beans>
